@@ -1,0 +1,47 @@
+body {
+  font-family: Georgia, serif;
+  background: #f8f1f1;
+  color: #5c5656;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero {
+  max-width: 800px;
+  margin: auto;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+}
+
+.hero-subline {
+  font-size: 2rem;
+}
+
+.begin-btn {
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: 1px solid #aaa;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.begin-btn:hover {
+  transform: translateY(-2px);
+}
+
+.stone-placeholder {
+  width: 120px;
+  height: 120px;
+  background: #ddd;
+  border-radius: 50%;
+  margin: 40px auto;
+}
+
+.footer-link {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #5c5656;
+}
