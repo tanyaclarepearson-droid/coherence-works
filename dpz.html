@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DPZ Threshold — Coupled Equation + Graph</title>
+<style>
+:root{
+  --navy:#09265c; --green:#08733e; --blue:#075fd1; --purple:#5d2db7; --teal:#68c8ca;
+  --ink:#102a55; --muted:#667b91; --line:#dfe7e8; --cream:#fbfaf6;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#fbfaf6,#eef6f5);color:var(--ink)}
+.page{max-width:1500px;margin:0 auto;padding:16px}
+.shell{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:26px;padding:22px;box-shadow:0 18px 45px rgba(10,42,78,.07)}
+.kicker{color:var(--green);font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:14px}
+h1{font-family:Georgia,serif;color:var(--navy);font-size:48px;line-height:1.02;margin:8px 0 8px;max-width:1000px}
+.subtitle{color:var(--green);font-size:19px;font-weight:850;max-width:980px}
+.subtext{font-size:14.5px;line-height:1.5;margin-top:8px;max-width:980px}
+
+.main-coupled{
+  display:grid;
+  grid-template-columns:360px minmax(0,1fr);
+  gap:18px;
+  margin-top:18px;
+  align-items:stretch;
+}
+.control-column,.graph-column{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:#fffdf9;
+  padding:18px;
+}
+.control-column{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.equation-card{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:16px;
+  background:linear-gradient(180deg,#fff,#fbfaf6);
+}
+.equation{font-family:Georgia,serif;color:var(--navy);font-size:32px;line-height:1.15;margin-bottom:10px}
+.equation span{color:var(--green);font-weight:900}
+.equation-card p{margin:0;color:var(--muted);line-height:1.45;font-weight:750}
+
+.panel-title{font-family:Georgia,serif;color:var(--navy);font-size:26px;margin:0 0 8px}
+.factor{margin:12px 0}
+.factor-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.factor strong{color:var(--navy)}
+.factor small{color:var(--muted);font-weight:800}
+.value-pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-weight:900;color:var(--navy);background:white}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:999px;background:linear-gradient(90deg,rgba(8,115,62,.22),rgba(104,200,202,.26),rgba(93,45,183,.20));box-shadow:inset 0 1px 4px rgba(9,38,92,.10)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid var(--green);box-shadow:0 4px 12px rgba(9,38,92,.18),0 0 0 7px rgba(8,115,62,.08)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid var(--green);box-shadow:0 4px 12px rgba(9,38,92,.18),0 0 0 7px rgba(8,115,62,.08)}
+.product-card{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  background:#fff;
+}
+.product-card .equation{font-size:28px;margin:0 0 6px}
+.product-card p{margin:0;color:var(--muted);line-height:1.42;font-weight:800}
+.warning,.observatory-note{
+  border-radius:16px;
+  padding:13px 14px;
+  font-weight:760;
+  line-height:1.42;
+  font-size:13px;
+}
+.warning{border-left:5px solid var(--purple);background:#f8f5ff;color:#3b3156}
+.observatory-note{border:1px solid rgba(104,200,202,.35);background:linear-gradient(180deg,#fff,#f6fbfb);color:var(--muted)}
+
+.graph-column{
+  background:
+    radial-gradient(circle at 72% 20%,rgba(8,115,62,.12),transparent 24%),
+    radial-gradient(circle at 54% 76%,rgba(93,45,183,.12),transparent 30%),
+    linear-gradient(180deg,#fff,#fffdf9);
+  display:flex;
+  flex-direction:column;
+}
+.graph-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.badge{display:inline-block;background:var(--navy);color:white;font-weight:900;letter-spacing:.03em;border-radius:999px;padding:10px 22px}
+.graph-note{
+  border:1px solid rgba(104,200,202,.35);
+  background:linear-gradient(180deg,#fff,#f6fbfb);
+  border-radius:16px;
+  padding:12px 14px;
+  color:var(--muted);
+  font-weight:800;
+  line-height:1.42;
+  flex:1;
+  min-width:330px;
+}
+.svg-wrap{position:relative;height:430px;margin-top:8px}
+svg{width:100%;height:100%;overflow:visible}
+.axis-label{position:absolute;left:0;top:210px;transform:rotate(-90deg);transform-origin:left top;font-weight:900;font-size:13px;color:var(--navy)}
+.axis-soft{stroke:rgba(9,38,92,.62);stroke-width:2;stroke-linecap:round}
+.threshold-line{stroke:var(--purple);stroke-width:4;stroke-dasharray:10 9}
+.threshold-band{fill:rgba(93,45,183,.08)}
+.product-line{fill:none;stroke:url(#prodGrad);stroke-width:8;stroke-linecap:round;filter:url(#glow);stroke-dasharray:1500;stroke-dashoffset:1500;animation:draw 8s ease-in-out forwards,breathe 4.8s ease-in-out 8s infinite}
+.product-shadow{fill:none;stroke:#d4dde0;stroke-width:8;stroke-linecap:round}
+.threshold-dot{opacity:0;animation:dot 1.2s ease-out forwards;animation-delay:5.4s}
+.field-ripple{opacity:0;animation:ripple 7s ease-in-out 4.8s infinite}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes breathe{0%,100%{stroke-width:8}50%{stroke-width:10}}
+@keyframes dot{0%{opacity:0;transform:scale(.4)}45%{opacity:1;transform:scale(1.35)}100%{opacity:1;transform:scale(1)}}
+@keyframes ripple{0%,100%{opacity:.12;transform:scale(.95)}50%{opacity:.38;transform:scale(1.04)}}
+.paused *{animation-play-state:paused!important}
+.time-label{text-align:center;font-weight:900;margin-top:-6px;color:var(--navy)}
+
+.signature-strip{
+  margin-top:12px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:#fff;
+  padding:14px;
+}
+.signature-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.signature-label{color:var(--navy);font-weight:900;text-transform:uppercase;letter-spacing:.05em;font-size:13px}
+.signature-presets{display:flex;gap:10px;flex-wrap:wrap}
+.preset{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:999px;padding:10px 13px;font-weight:900;cursor:pointer;transition:all .22s ease}
+.preset:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(10,42,78,.10)}
+.preset.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 10px 24px rgba(9,38,92,.16)}
+.signature-text-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.sig-card{border:1px solid var(--line);border-radius:14px;background:#fffdf9;padding:12px;line-height:1.35;font-size:12.5px}
+.sig-card strong{display:block;color:var(--navy);font-size:13.5px;margin-bottom:5px}
+.sig-card.active{border-color:rgba(8,115,62,.45);box-shadow:0 0 0 2px rgba(8,115,62,.08);background:#f8fcf9}
+
+.story-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.story{border:1px solid var(--line);border-radius:15px;background:white;padding:13px;line-height:1.4}
+.story strong{display:block;color:var(--navy);margin-bottom:5px}
+.story p{margin:0;color:#405778;font-size:13px}
+.controls{border:1px solid var(--line);border-radius:18px;background:#fff;padding:12px 14px;margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.control-btn{width:46px;height:46px;border-radius:50%;border:0;background:var(--navy);color:white;font-size:20px;cursor:pointer;font-weight:900}
+.control-btn.green{background:var(--green)}
+.status{color:var(--green);font-weight:850;font-size:13px}
+.progress{flex:1;min-width:180px;height:8px;border-radius:999px;background:#dbe7e9;position:relative;overflow:hidden}
+.progress span{position:absolute;inset:0 auto 0 0;width:0%;background:linear-gradient(90deg,var(--green),var(--teal),var(--purple),var(--green));animation:progress 8s ease-in-out forwards}
+@keyframes progress{to{width:100%}}
+.audio-note{margin-left:auto;color:var(--muted);font-size:13px;font-weight:750}
+
+.summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:16px}
+.summary-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px}
+.summary-card h3{margin:0 0 8px;font-family:Georgia,serif;color:var(--navy);font-size:23px}
+.summary-card p{margin:0;color:#405778;line-height:1.45}
+.footer{margin-top:14px;background:var(--navy);color:white;border-radius:16px;padding:16px 22px;display:flex;justify-content:space-between;gap:18px;letter-spacing:.05em;text-transform:uppercase;font-size:13px}
+.footer span:last-child{color:#75d69c;text-transform:none;letter-spacing:0;font-size:15px}
+
+@media(max-width:1100px){
+  .main-coupled,.summary{grid-template-columns:1fr}
+  h1{font-size:38px}
+  .svg-wrap{height:390px}
+  .signature-text-row,.story-row{grid-template-columns:1fr}
+  .footer{flex-direction:column}
+}
+
+#formGlow,#freqGlow,#fidGlow{
+  transition: opacity .45s ease, r .45s ease, cx .45s ease, cy .45s ease;
+  filter:url(#glow);
+}
+.condition-key{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:8px;
+  font-size:12px;
+  color:var(--muted);
+  font-weight:800;
+}
+.key-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:5px;
+}
+
+
+.memory-trace{
+  fill:none;
+  stroke:rgba(9,38,92,.18);
+  stroke-width:4;
+  stroke-linecap:round;
+  stroke-dasharray:6 10;
+  pointer-events:none;
+  transition:opacity .4s ease;
+}
+.memory-trace.green{stroke:rgba(8,115,62,.20);}
+.memory-trace.teal{stroke:rgba(104,200,202,.24);}
+.memory-trace.purple{stroke:rgba(93,45,183,.20);}
+.memory-toggle-note{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+}
+
+
+.five-r-panel{border:1px solid var(--line);border-radius:20px;background:radial-gradient(circle at 92% 8%,rgba(8,115,62,.09),transparent 34%),rgba(255,255,255,.72);padding:16px;margin-top:14px}
+.five-r-panel h3{margin:0 0 8px;font-family:Georgia,serif;color:var(--navy);font-size:24px}
+.five-r-panel p{margin:0 0 12px;color:var(--muted);line-height:1.42;font-weight:750;font-size:13px}
+.five-r-signals{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.five-r-signal{border:1px solid var(--line);border-radius:14px;background:#fff;padding:10px;font-size:12px;color:var(--muted);transition:all .22s ease}
+.five-r-signal strong{display:block;color:var(--navy);margin-bottom:4px;font-size:12.5px}
+.five-r-signal.active{border-color:rgba(8,115,62,.45);background:#f7fcf8;box-shadow:0 0 0 2px rgba(8,115,62,.08)}
+@media(max-width:900px){.five-r-signals{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="page"><div class="shell">
+  <div class="kicker">Multiplicative Conditions · DPZ Threshold</div>
+  <h1>Coherent conditions multiply over time.</h1>
+  <div class="subtitle">One fragile condition can limit the field. Alignment can move development into the DPZ.</div>
+  <div class="subtext">This animated model visualizes stability as a multiplicative relationship: <strong>Form × Frequency × Fidelity</strong>. The Developmental Permanence Zone marks the threshold where gains may become more self-sustaining.</div>
+
+  <section class="main-coupled">
+    <aside class="control-column">
+      <div class="equation-card">
+        <div class="equation">S = <span>F₀</span> · <span>Fq</span> · <span>Ff</span></div>
+        <p><strong>S</strong> = stability of conditions<br>
+        <strong>F₀</strong> = Form · access and fit<br>
+        <strong>Fq</strong> = Frequency · patterned contact<br>
+        <strong>Ff</strong> = Fidelity · coherent enactment</p>
+      </div>
+
+      <div>
+        <h2 class="panel-title">Condition inputs</h2>
+        <div class="factor">
+          <div class="factor-head"><strong>Form · F₀</strong><span class="value-pill" id="formVal">0.72</span></div>
+          <small>How accessible and well-matched is the condition?</small>
+          <input id="form" type="range" min="0" max="1" step="0.01" value="0.72">
+        </div>
+        <div class="factor">
+          <div class="factor-head"><strong>Frequency · Fq</strong><span class="value-pill" id="freqVal">0.68</span></div>
+          <small>How often and how rhythmically does contact recur?</small>
+          <input id="freq" type="range" min="0" max="1" step="0.01" value="0.68">
+        </div>
+        <div class="factor">
+          <div class="factor-head"><strong>Fidelity · Ff</strong><span class="value-pill" id="fidVal">0.74</span></div>
+          <small>How coherently is the condition enacted?</small>
+          <input id="fid" type="range" min="0" max="1" step="0.01" value="0.74">
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="equation">S = <span id="productVal">0.36</span></div>
+        <p id="zoneText">Below DPZ threshold. Conditions are strengthening, but the pattern may still require active support.</p>
+      </div>
+
+      <div class="warning">Multiplicative means one fragile condition can limit the whole field. Coherence strengthens when the set becomes more aligned together.</div>
+      <div class="observatory-note">This is a perceptual aid, not a score. The purpose is to notice where alignment work may matter next.</div>
+    </aside>
+
+    <section class="graph-column">
+      <div class="graph-top">
+        <div class="badge">DPZ THRESHOLD ANIMATION</div>
+        <div class="graph-note" id="graphNote">Routine signature: stabilization grows through predictable repetition and coherent enactment.
+          <div class="condition-key">
+            <span><i class="key-dot" style="background:#08733e"></i>Form / access</span>
+            <span><i class="key-dot" style="background:#68c8ca"></i>Frequency / contact</span>
+            <span><i class="key-dot" style="background:#5d2db7"></i>Fidelity / coherence</span><span>≋ faint traces show prior field states</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svg-wrap">
+        <div class="axis-label">Stability of Conditions · S</div>
+        <svg id="chart" viewBox="0 0 1000 520" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="prodGrad" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="#08733e"/><stop offset="48%" stop-color="#075fd1"/><stop offset="74%" stop-color="#5d2db7"/><stop offset="100%" stop-color="#08733e"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <rect x="70" y="70" width="880" height="300" rx="22" fill="rgba(255,255,255,.48)"/>
+          <circle id="formGlow" cx="240" cy="190" r="150" fill="#08733e" opacity=".10"/>
+          <circle id="freqGlow" cx="520" cy="220" r="170" fill="#68c8ca" opacity=".10"/>
+          <circle id="fidGlow" cx="760" cy="170" r="155" fill="#5d2db7" opacity=".10"/>
+          <rect class="threshold-band" x="70" y="70" width="880" height="110"/>
+          <line x1="70" y1="180" x2="950" y2="180" class="threshold-line"/>
+          <text x="80" y="164" font-size="18" fill="#5d2db7" font-weight="800">DPZ threshold · S*</text>
+          <text x="770" y="108" font-size="17" fill="#08733e" font-weight="900">Developmental Permanence Zone</text>
+          <line x1="70" y1="370" x2="950" y2="370" class="axis-soft"/>
+          <line x1="70" y1="370" x2="70" y2="70" class="axis-soft"/>
+          <text x="30" y="88" font-size="13" fill="#09265c" font-weight="800">HIGH</text>
+          <text x="34" y="368" font-size="13" fill="#09265c" font-weight="800">LOW</text>
+          <circle class="field-ripple" cx="740" cy="146" r="78" fill="none" stroke="#08733e" stroke-width="5"/>
+          <circle class="field-ripple" cx="740" cy="146" r="118" fill="none" stroke="#08733e" stroke-width="3" style="animation-delay:.5s"/>
+          <g id="memoryTraces"></g>
+          <path id="shadowPath" class="product-shadow" d="M90,330 C170,325 210,300 280,288 C350,276 410,292 480,255 C555,218 610,230 680,190 C750,150 825,150 930,130"/>
+          <path id="prodPath" class="product-line" d="M90,330 C170,325 210,300 280,288 C350,276 410,292 480,255 C555,218 610,230 680,190 C750,150 825,150 930,130"/>
+          <circle id="thresholdDot" class="threshold-dot" cx="693" cy="184" r="13" fill="#fff" stroke="#5d2db7" stroke-width="5"/>
+          <text x="704" y="205" font-size="14" fill="#5d2db7" font-weight="900">threshold crossing</text>
+          <text x="98" y="420" font-size="16" fill="#09265c" font-weight="900">early support</text>
+          <text x="430" y="420" font-size="16" fill="#09265c" font-weight="900">conditions align</text>
+          <text x="748" y="420" font-size="16" fill="#09265c" font-weight="900">self-sustaining pattern</text>
+        </svg>
+      </div>
+      <div class="time-label">Time · repeated coherent contact</div>
+
+      <div class="signature-strip">
+        <div class="signature-header">
+          <div class="signature-label">Temporal signatures · graph behavior modes</div>
+          <div class="signature-presets">
+            <button type="button" class="preset active" data-preset="routine">Routine</button>
+            <button type="button" class="preset" data-preset="song">Rhythmic Re-entry</button>
+            <button type="button" class="preset" data-preset="frame">Language Deepening</button>
+            <button type="button" class="preset" data-preset="celebration">Shared Joy Return</button>
+          </div>
+        </div>
+        <div class="signature-text-row">
+          <div class="sig-card active" data-card="routine"><strong>Routine</strong>Predictable repetition stabilizes the pathway.</div>
+          <div class="sig-card" data-card="song"><strong>Rhythmic Re-entry</strong>Familiar rhythms can reactivate emotional memory.</div>
+          <div class="sig-card" data-card="frame"><strong>Language Deepening</strong>Impact may grow as confidence accumulates.</div>
+          <div class="sig-card" data-card="celebration"><strong>Shared Joy Return</strong>Episodic touchstones can renew belonging.</div>
+        </div>
+      </div>
+
+      <div class="story-row">
+        <div class="story"><strong>Before threshold</strong><p>Progress may appear, but gains often depend on active adult scaffolding.</p></div>
+        <div class="story"><strong>Approaching threshold</strong><p>Conditions begin reinforcing one another. Student-held pathways become more visible.</p></div>
+        <div class="story"><strong>Inside DPZ</strong><p>The pattern is more durable. Agency can persist with less continuous external input.</p></div>
+      </div>
+
+      <div class="controls">
+        <button class="control-btn" onclick="restart()">▶</button>
+        <button class="control-btn green" id="toggleBtn" onclick="toggleAnimation()">❚❚</button>
+        <button class="control-btn" id="audioBtn" onclick="toggleAudio()" style="background:var(--purple)">♪</button>
+        <button class="control-btn" id="memoryBtn" onclick="toggleMemory()" style="background:var(--teal)">≋</button>
+        <div><b>Watch multiplicative coherence cross the DPZ threshold</b><br><span class="status" id="status">Animation in progress…</span></div>
+        <div class="audio-note">♪ chime · ≋ memory traces</div>
+        <div class="progress"><span id="bar"></span></div>
+      </div>
+    </section>
+  </section>
+
+  
+<div class="five-r-panel" id="fiveRPanel">
+  <h3>5R resonance signatures</h3>
+  <p id="fiveRInterpretation">As conditions align, resonance signatures may become easier to notice.</p>
+  <div class="five-r-signals">
+    <div class="five-r-signal" data-r="regulation"><strong>Regulation</strong><span>Calmer return</span></div>
+    <div class="five-r-signal" data-r="resonance"><strong>Resonance</strong><span>Shared rhythm</span></div>
+    <div class="five-r-signal" data-r="reflection"><strong>Reflection</strong><span>Pattern noticing</span></div>
+    <div class="five-r-signal" data-r="belonging"><strong>Belonging</strong><span>Relational safety</span></div>
+    <div class="five-r-signal" data-r="transfer"><strong>Transfer</strong><span>Student-held reuse</span></div>
+  </div>
+</div>
+
+<div class="summary">
+    <div class="summary-card"><h3>Form</h3><p>When the condition fits learners and offers accessible pathways, students can enter the practice.</p></div>
+    <div class="summary-card"><h3>Frequency</h3><p>Patterned reoccurrence over time gives the condition enough contact to stabilize.</p></div>
+    <div class="summary-card"><h3>Fidelity</h3><p>Coherent enactment protects the pattern from becoming fragmented or confusing.</p></div>
+  </div>
+
+  <div class="footer">
+    <span>Coherence is multiplicative.</span><span>Thresholds matter.</span><span>Agency stabilizes through aligned conditions.</span><span>DPZ marks a range where gains may become more durable.</span>
+  </div>
+</div></div>
+
+<script>
+
+function updateFiveRSignatures(s){
+  const activeByPreset={routine:["regulation","transfer"],song:["regulation","resonance","belonging"],frame:["reflection","transfer"],celebration:["resonance","belonging"]};
+  const base=activeByPreset[currentPreset]||[];
+  const expanded=s>=threshold?[...new Set([...base,"reflection","transfer"])]:base;
+  document.querySelectorAll(".five-r-signal").forEach(el=>el.classList.toggle("active",expanded.includes(el.dataset.r)));
+  const interp=document.getElementById("fiveRInterpretation");
+  if(interp) interp.textContent=s>=threshold?"Inside the DPZ range: resonance signatures may become more stable, visible, and student-held.":"Below threshold: look for early resonance signatures without treating them as fixed outcomes.";
+}
+
+const form=document.getElementById("form"),freq=document.getElementById("freq"),fid=document.getElementById("fid");
+const formVal=document.getElementById("formVal"),freqVal=document.getElementById("freqVal"),fidVal=document.getElementById("fidVal");
+const productVal=document.getElementById("productVal"),zoneText=document.getElementById("zoneText");
+const threshold=.42;
+const presets={
+ routine:{form:.72,freq:.68,fid:.74,profile:{early:.90,middle:.88,valley:1.00,final:.92},note:"Routine signature: stabilization grows through predictable repetition and coherent enactment."},
+ song:{form:.82,freq:.58,fid:.78,profile:{early:1.12,middle:.84,valley:.86,final:1.08},note:"Rhythmic re-entry signature: potency may rise quickly, soften with familiarity, then reactivate through emotional memory."},
+ frame:{form:.76,freq:.74,fid:.66,profile:{early:.72,middle:1.02,valley:1.05,final:1.05},note:"Language deepening signature: visible impact may deepen later as confidence and independence accumulate."},
+ celebration:{form:.80,freq:.45,fid:.84,profile:{early:1.18,middle:.70,valley:.78,final:1.18},note:"Shared joy return signature: episodic conditions may re-enter with strong relational and belonging effects."}
+};
+let currentPreset="routine",audioOn=false,audioCtx=null,paused=false;
+
+let memoryOn = true;
+let memoryCounter = 0;
+
+function addMemoryTrace(pathD){
+  if(!memoryOn || !pathD) return;
+  const now = Date.now();
+  if(window._lastTraceAt && now - window._lastTraceAt < 220) return;
+  window._lastTraceAt = now;
+  const group = document.getElementById("memoryTraces");
+  if(!group) return;
+
+  const trace = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  const classes = ["memory-trace"];
+  if(memoryCounter % 3 === 0) classes.push("green");
+  if(memoryCounter % 3 === 1) classes.push("teal");
+  if(memoryCounter % 3 === 2) classes.push("purple");
+
+  trace.setAttribute("class", classes.join(" "));
+  trace.setAttribute("d", pathD);
+  trace.setAttribute("opacity", "0.42");
+  group.appendChild(trace);
+  memoryCounter++;
+
+  const traces = Array.from(group.querySelectorAll(".memory-trace"));
+  traces.forEach((t, i) => {
+    const age = traces.length - i;
+    t.setAttribute("opacity", Math.max(0.08, 0.42 - age * 0.07).toFixed(2));
+  });
+
+  while(group.children.length > 6){
+    group.removeChild(group.firstElementChild);
+  }
+}
+
+function toggleMemory(){
+  memoryOn = !memoryOn;
+  const btn = document.getElementById("memoryBtn");
+  btn.style.background = memoryOn ? "var(--teal)" : "#9aa8b4";
+  document.getElementById("status").textContent = memoryOn ? "Field memory traces enabled." : "Field memory traces hidden.";
+  const group = document.getElementById("memoryTraces");
+  if(group) group.style.display = memoryOn ? "block" : "none";
+}
+
+
+function updateProduct(){
+ const f0=parseFloat(form.value),fq=parseFloat(freq.value),ff=parseFloat(fid.value),s=f0*fq*ff;
+ formVal.textContent=f0.toFixed(2);freqVal.textContent=fq.toFixed(2);fidVal.textContent=ff.toFixed(2);productVal.textContent=s.toFixed(2);updateFiveRSignatures(s);
+ const profile=(presets[currentPreset]&&presets[currentPreset].profile)||{early:1,middle:1,valley:1,final:1};
+
+ // Live environmental field tint: each condition changes the atmosphere of the graph.
+ const formGlow=document.getElementById("formGlow");
+ const freqGlow=document.getElementById("freqGlow");
+ const fidGlow=document.getElementById("fidGlow");
+ if(formGlow){
+   formGlow.setAttribute("opacity",(0.04 + f0*.20).toFixed(2));
+   formGlow.setAttribute("r",(95 + f0*105).toFixed(0));
+   formGlow.setAttribute("cy",(230 - f0*42).toFixed(0));
+ }
+ if(freqGlow){
+   freqGlow.setAttribute("opacity",(0.04 + fq*.20).toFixed(2));
+   freqGlow.setAttribute("r",(95 + fq*125).toFixed(0));
+   freqGlow.setAttribute("cx",(455 + fq*95).toFixed(0));
+ }
+ if(fidGlow){
+   fidGlow.setAttribute("opacity",(0.04 + ff*.20).toFixed(2));
+   fidGlow.setAttribute("r",(95 + ff*115).toFixed(0));
+   fidGlow.setAttribute("cy",(230 - ff*56).toFixed(0));
+ }
+ const peak1=330-(f0*170*profile.early), peak2=330-(fq*165*profile.middle), dormantY=210+((1-fq)*55*profile.valley), finalY=120-(s*90*profile.final);
+ const dynamicPath=`M90,330 C170,325 210,${peak1.toFixed(0)} 280,${(peak1+20).toFixed(0)} C350,${(peak2+10).toFixed(0)} 410,${(peak2+26).toFixed(0)} 480,${(peak2-18).toFixed(0)} C555,${(dormantY-10).toFixed(0)} 610,${dormantY.toFixed(0)} 680,${(dormantY-28).toFixed(0)} C750,${(finalY+40).toFixed(0)} 825,${(finalY+22).toFixed(0)} 930,${finalY.toFixed(0)}`;
+ const prodPathEl=document.getElementById("prodPath");
+ const oldPath=prodPathEl.getAttribute("d");
+ if(oldPath && oldPath !== dynamicPath && window._initializedGraph){ addMemoryTrace(oldPath); }
+ prodPathEl.setAttribute("d",dynamicPath);document.getElementById("shadowPath").setAttribute("d",dynamicPath);
+ window._initializedGraph=true;
+ const thresholdDot=document.getElementById("thresholdDot"),crossed=s>=threshold;
+ thresholdDot.setAttribute("cx",crossed?740:610);thresholdDot.setAttribute("cy",crossed?172:230);
+ document.getElementById("graphNote").textContent=presets[currentPreset]?.note||"The graph responds as conditions shift.";
+ if(crossed){zoneText.textContent="Inside the DPZ range. Conditions may now support more durable, student-held agency.";zoneText.style.color="var(--green)";if(!window._lastCrossed){softChime()}window._lastCrossed=true}
+ else{zoneText.textContent="Below DPZ threshold. Conditions are strengthening, but the pattern may still require active support.";zoneText.style.color="var(--muted)";window._lastCrossed=false}
+}
+[form,freq,fid].forEach(el=>el.addEventListener("input",updateProduct));
+
+function applyPreset(name){
+ currentPreset=name; const p=presets[name]; if(!p)return;
+ form.value=p.form;freq.value=p.freq;fid.value=p.fid;
+ document.querySelectorAll(".preset").forEach(btn=>btn.classList.toggle("active",btn.dataset.preset===name));
+ document.querySelectorAll(".sig-card").forEach(card=>card.classList.toggle("active",card.dataset.card===name));
+ updateProduct(); restart(false);
+}
+document.querySelectorAll(".preset").forEach(btn=>btn.addEventListener("click",()=>applyPreset(btn.dataset.preset)));
+
+function toggleAnimation(){paused=!paused;document.body.classList.toggle("paused",paused);document.getElementById("toggleBtn").innerHTML=paused?"▶":"❚❚";document.getElementById("status").textContent=paused?"Animation paused for reflection.":"Animation resumed…"}
+function restart(showMsg=true){
+ document.querySelectorAll(".product-line,.threshold-dot,.field-ripple,#bar").forEach(el=>{el.style.animation="none";void el.offsetWidth;el.style.animation=""});
+ paused=false;document.body.classList.remove("paused");document.getElementById("toggleBtn").innerHTML="❚❚";
+ if(showMsg)document.getElementById("status").textContent="Animation restarted…";
+ setTimeout(()=>document.getElementById("status").textContent="Cycle complete — threshold relationship visible.",8300)
+}
+function toggleAudio(){audioOn=!audioOn;document.getElementById("audioBtn").style.background=audioOn?"var(--green)":"var(--purple)";document.getElementById("status").textContent=audioOn?"Soft threshold chime enabled.":"Audio off."}
+function softChime(){if(!audioOn)return;try{if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type="sine";osc.frequency.setValueAtTime(523.25,audioCtx.currentTime);osc.frequency.exponentialRampToValueAtTime(659.25,audioCtx.currentTime+.45);gain.gain.setValueAtTime(.0001,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.045,audioCtx.currentTime+.08);gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.75);osc.connect(gain).connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+.8)}catch(e){}}
+updateProduct();setTimeout(()=>document.getElementById("status").textContent="Cycle complete — threshold relationship visible.",8300);
+</script>
+</body>
+</html>

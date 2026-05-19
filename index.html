@@ -1,172 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coherence Works</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coherence Works · Developmental Sensemaking Hub</title>
+<style>
+:root{
+ --line:rgba(255,255,255,.14);
+ --text:#f6fbff;
+ --muted:#b8c7d9;
+ --green:#a8cf45;
+ --cyan:#69d7dd;
+ --purple:#b48cff;
+}
+*{box-sizing:border-box}
+html,body{
+ margin:0;
+ min-height:100%;
+ background:
+  radial-gradient(circle at 18% 0%, rgba(105,215,221,.14), transparent 34%),
+  radial-gradient(circle at 92% 10%, rgba(180,140,255,.12), transparent 34%),
+  radial-gradient(circle at bottom, rgba(168,207,69,.10), transparent 38%),
+  linear-gradient(180deg,#102540 0%,#07111f 56%,#030814 100%);
+ color:var(--text);
+ font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 18px 44px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px}
+.brand{display:flex;gap:12px;align-items:center}
+.mark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(168,207,69,.12);border:1px solid rgba(168,207,69,.28);color:#dfff91;font-weight:950}
+.brand strong{display:block;font-family:Georgia,serif;font-size:22px}
+.brand span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav a{
+ text-decoration:none;border:1px solid var(--line);background:rgba(255,255,255,.055);
+ color:var(--muted);border-radius:999px;padding:9px 12px;font-weight:850;font-size:13px
+}
+nav a:hover{color:white;background:rgba(255,255,255,.10)}
+.hero{
+ border:1px solid var(--line);border-radius:34px;
+ background:
+  radial-gradient(circle at 92% 12%, rgba(168,207,69,.12), transparent 34%),
+  radial-gradient(circle at 8% 92%, rgba(105,215,221,.10), transparent 36%),
+  rgba(255,255,255,.052);
+ box-shadow:0 34px 95px rgba(0,0,0,.34);overflow:hidden
+}
+.hero-inner{padding:46px}
+.kicker{color:var(--green);text-transform:uppercase;letter-spacing:.11em;font-weight:950;font-size:12px}
+h1{font-family:Georgia,serif;font-size:58px;line-height:1.02;margin:12px 0 14px;max-width:880px}
+.lead{color:var(--muted);font-size:18px;line-height:1.65;max-width:850px;margin:0}
+.anchor{
+ margin-top:22px;padding:18px 20px;border-radius:22px;border:1px solid rgba(168,207,69,.25);
+ background:rgba(168,207,69,.08);font-family:Georgia,serif;font-size:22px;line-height:1.35;max-width:880px
+}
+.map{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:22px;border-top:1px solid var(--line);background:rgba(0,0,0,.10)}
+.card{
+ min-height:250px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:inherit;
+ border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.045);padding:20px;
+ transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease
+}
+.card:hover{transform:translateY(-4px);background:rgba(168,207,69,.07);border-color:rgba(168,207,69,.42);box-shadow:0 18px 46px rgba(0,0,0,.26)}
+.icon{width:56px;height:56px;border-radius:20px;display:grid;place-items:center;font-size:25px;margin-bottom:18px;background:rgba(168,207,69,.10);border:1px solid rgba(168,207,69,.22)}
+.card h2{font-family:Georgia,serif;font-size:28px;line-height:1.06;margin:0 0 10px}
+.card p{color:var(--muted);line-height:1.48;margin:0;font-size:14px}
+.card .open{margin-top:18px;color:#dfff91;font-weight:900;font-size:13px}
+.section{margin-top:18px;border:1px solid var(--line);border-radius:28px;background:rgba(255,255,255,.04);overflow:hidden}
+.section-head{padding:24px 26px 14px;border-bottom:1px solid var(--line)}
+.section-head h2{font-family:Georgia,serif;font-size:34px;margin:0 0 8px}
+.section-head p{margin:0;color:var(--muted);line-height:1.55;max-width:850px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:22px}
+.step{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04);padding:16px}
+.step strong{display:block;color:white;margin-bottom:8px}
+.step span{color:var(--muted);font-size:13px;line-height:1.42}
+.footer{margin-top:18px;color:var(--muted);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px}
+@media(max-width:1000px){
+ header{align-items:flex-start;flex-direction:column}
+ h1{font-size:42px}
+ .hero-inner{padding:30px}
+ .map,.flow{grid-template-columns:1fr}
+ .card{min-height:auto}
+}
+</style>
 </head>
 <body>
-  <div class="page-field">
-    <header class="site-header">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">◌</div>
-        <div class="brand-text">Coherence Works</div>
-      </div>
+<div class="wrap">
+ <header>
+  <div class="brand">
+   <div class="mark">≋</div>
+   <div>
+    <strong>Coherence Works</strong>
+    <span>Developmental sensemaking infrastructure</span>
+   </div>
+  </div>
+  <nav>
+   <a href="agency.html">Agency</a>
+   <a href="temporal.html">Temporal</a>
+   <a href="dpz.html">Developmental Permanence Zone</a>
+   <a href="#architecture">Architecture</a>
+  </nav>
+ </header>
 
-      <nav class="top-nav" aria-label="Primary">
-        <a href="#begin" class="nav-link active">Begin</a>
-        <a href="#entry" class="nav-link">Entry</a>
-        <a href="#language" class="nav-link">Language</a>
-        <a href="#practice" class="nav-link">Practice</a>
-        <a href="#system" class="nav-link">System</a>
-        <a href="#field" class="nav-link">Field</a>
-        <a href="#law" class="nav-link">Law</a>
-      </nav>
-    </header>
-
-    <main>
-      <section id="begin" class="panel hero-panel is-current">
-        <div class="panel-inner">
-          <div class="reveal reveal-1 logo-wrap">
-            <h1 class="site-title">Coherence Works</h1>
-          </div>
-
-          <div class="reveal reveal-2 hero-group">
-            <h2 class="hero-title">Coherence holds over time,</h2>
-            <p class="hero-subline">moment by moment.</p>
-          </div>
-
-          <div class="reveal reveal-3 soft-divider" aria-hidden="true"></div>
-
-          <p class="reveal reveal-4 lead">
-            Start where you are. Feel how conditions shape coherence—
-            and conditions can change.
-          </p>
-
-          <div class="reveal reveal-5 cta-row">
-            <button class="begin-btn" data-go="#entry">Begin</button>
-          </div>
-
-          <div class="reveal reveal-6 reflection-block">
-            <p>Notice what is shifting, and feel what holds.</p>
-            <p>First, notice what is shifting.</p>
-            <p>Then, feel what is steady.</p>
-            <p>Let what holds, hold—without force.</p>
-            <p>And follow what begins to align by itself.</p>
-          </div>
-
-          <div class="reveal reveal-6 stone-wrap" aria-hidden="true">
-            <div class="stone-stack">
-              <span class="stone stone-1"></span>
-              <span class="stone stone-2"></span>
-              <span class="stone stone-3"></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="entry" class="panel">
-        <div class="panel-inner">
-          <p class="panel-kicker reveal">Entry</p>
-          <h2 class="panel-title reveal">Nothing to prepare. Nothing to perform.</h2>
-          <p class="panel-text reveal">
-            This begins with noticing. Noticing pace. Noticing pressure.
-            Noticing what steadies and what slips.
-          </p>
-          <div class="panel-actions reveal">
-            <button class="ghost-btn" data-go="#language">Continue</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="language" class="panel">
-        <div class="panel-inner">
-          <p class="panel-kicker reveal">Language</p>
-          <h2 class="panel-title reveal">Patterns become easier to follow when they can be named.</h2>
-          <div class="terms-grid reveal">
-            <article class="term-card"><h3>Anchor</h3><p>What steadies attention or regulation.</p></article>
-            <article class="term-card"><h3>Signal</h3><p>What indicates alignment or drift.</p></article>
-            <article class="term-card"><h3>Pulse</h3><p>What repeats and begins to shape rhythm.</p></article>
-            <article class="term-card"><h3>Home</h3><p>Where coherence can return.</p></article>
-            <article class="term-card"><h3>Link</h3><p>What connects one condition to another.</p></article>
-            <article class="term-card"><h3>Code</h3><p>The pattern carried through repetition.</p></article>
-          </div>
-          <div class="panel-actions reveal">
-            <button class="ghost-btn" data-go="#practice">Continue</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="practice" class="panel">
-        <div class="panel-inner">
-          <p class="panel-kicker reveal">Practice</p>
-          <h2 class="panel-title reveal">Sense. Stabilize. Move.</h2>
-          <p class="panel-text reveal">
-            Coherence becomes usable through small, repeated adjustments.
-            Sense what is present. Stabilize what can hold. Move when alignment begins.
-          </p>
-          <div class="panel-actions reveal">
-            <button class="ghost-btn" data-go="#system">Continue</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="system" class="panel">
-        <div class="panel-inner">
-          <p class="panel-kicker reveal">System</p>
-          <h2 class="panel-title reveal">Systems stabilize what they repeat.</h2>
-          <p class="panel-text reveal">
-            Conditions do not matter once. They matter through pattern, recurrence,
-            and consistency across time.
-          </p>
-          <div class="panel-actions reveal">
-            <button class="ghost-btn" data-go="#field">Continue</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="field" class="panel">
-        <div class="panel-inner">
-          <p class="panel-kicker reveal">Field</p>
-          <h2 class="panel-title reveal">Coherence is absorbed, not applied.</h2>
-          <p class="panel-text reveal">
-            A field is relational, temporal, and shared. It shapes what becomes possible
-            before outcomes make that visible.
-          </p>
-          <div class="panel-actions reveal">
-            <button class="ghost-btn" data-go="#law">Continue</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="law" class="panel">
-        <div class="panel-inner">
-          <p class="panel-kicker reveal">Law</p>
-          <h2 class="panel-title reveal">Development follows conditions.</h2>
-          <p class="panel-text reveal">
-            You do not create outcomes. You participate in conditions.
-            What holds can grow. What grows can endure.
-          </p>
-          <div class="panel-actions reveal">
-            <button class="ghost-btn" data-go="#begin">Return to Begin</button>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-links">
-        <a href="#begin">Portal</a>
-        <span>·</span>
-        <a href="#language">Language</a>
-        <span>·</span>
-        <a href="#system">System</a>
-      </div>
-      <div class="footer-copy">Coherence Works · 2026</div>
-    </footer>
+ <main class="hero">
+  <div class="hero-inner">
+   <div class="kicker">Start here</div>
+   <h1>A calm entry into coherent conditions, agency, time, and durability.</h1>
+   <p class="lead">
+     Each page offers a different lens: the human-facing agency pathway, the temporal life cycle of conditions, the multiplicative DPZ threshold, and the resonance signatures that make emergence easier to notice.
+   </p>
+   <div class="anchor">
+    Conditions shape the field. Timing changes their potency. Resonance makes emergence perceptible. Durability begins when coherent patterns become easier to hold.
+   </div>
   </div>
 
-  <script src="script.js"></script>
+  <div class="map">
+   <a class="card" href="agency.html">
+    <div>
+     <div class="icon">◎</div>
+     <h2>Conditions for Agency</h2>
+     <p>The human-facing pathway: conditions, coherence, songs, lyrics, role lenses, signals, and 5R resonance signatures.</p>
+    </div>
+    <div class="open">Open Agency →</div>
+   </a>
+
+   <a class="card" href="temporal.html">
+    <div>
+     <div class="icon">⟳</div>
+     <h2>Temporal Dynamics</h2>
+     <p>An animated model of how conditions emerge, stabilize, fade, remain latent, reactivate, and transform.</p>
+    </div>
+    <div class="open">Open Temporal →</div>
+   </a>
+
+   <a class="card" href="dpz.html">
+    <div>
+     <div class="icon">∴</div>
+     <h2>Developmental Permanence Zone</h2>
+     <p>An interactive threshold model showing how Form × Frequency × Fidelity may help developmental gains become more durable and self-sustaining.</p>
+    </div>
+    <div class="open">Open DPZ →</div>
+   </a>
+
+   <a class="card" href="agency.html#fiveR">
+    <div>
+     <div class="icon">5R</div>
+     <h2>Resonance Signatures</h2>
+     <p>Regulation, resonance, reflection, relational belonging, and recursive transfer as observable emergence signals.</p>
+    </div>
+    <div class="open">Open 5R →</div>
+   </a>
+  </div>
+ </main>
+
+ <section class="section" id="architecture">
+  <div class="section-head">
+   <div class="kicker">Architecture</div>
+   <h2>How the pieces fit together</h2>
+   <p>This system is not organized as a set of isolated resources. It is a layered ecology for perceiving how development becomes more likely, more visible, and more durable under coherent conditions.</p>
+  </div>
+  <div class="flow">
+   <div class="step"><strong>3F · Conditions</strong><span>Form, Frequency, and Fidelity shape the developmental field.</span></div>
+   <div class="step"><strong>CREA · Emergence</strong><span>Coherent conditions support resonance, emergence, and agency.</span></div>
+   <div class="step"><strong>5R · Signatures</strong><span>Observable resonance signals make emerging agency easier to notice.</span></div>
+   <div class="step"><strong>Developmental Permanence Zone · Durability</strong><span>A threshold range where coherent patterns may become more stable, transferable, and self-sustaining.</span></div>
+  </div>
+ </section>
+
+ <div class="footer">
+  <span>Coherence is a living practice.</span>
+  <span></span>
+ </div>
+</div>
 </body>
 </html>
