@@ -1,122 +1,214 @@
-# 🌿 Coherence Works
+🌿 Coherence Works
 
-*A conditions-based approach to human development.*
+A conditions-based approach to human development.
 
----
+🌊 Orientation
 
-## 🌊 Orientation
+This work begins with a simple observation:
 
-This work explores a simple observation:
-
-Learning, behavior, and development do not arise from effort alone.
+Learning, behavior, participation, and agency do not arise from effort alone.
 They emerge from the conditions that hold over time.
 
-What is stable becomes usable.
-What is usable becomes transferable.
-What is transferable becomes part of how a person moves through the world.
+What becomes stable becomes usable.
+What becomes usable becomes transferable.
+What becomes transferable begins shaping how a person moves through the world.
 
----
+🧭 What This Is
 
-## 🧭 What This Is
+Coherence Works is a developing ecosystem of models, visual systems, and interactive environments designed to help make developmental patterns more perceptible.
 
-Coherence Works is a set of models, visual systems, and interactive tools that make visible:
+The work explores:
 
-* how coherence forms
-* how it stabilizes
-* how it breaks
-* and how it returns
+how coherence forms
+how it stabilizes
+how it fades
+how it reactivates
+and how durable agency becomes possible over time
 
 It is not a program to implement.
+
 It is a pattern to recognize.
 
----
+🌱 Core Architecture
 
-## 🌱 Core Idea
+This work currently explores development through four connected layers:
 
-Development becomes durable when conditions achieve sufficient coherence over time.
+Conditions · 3F
+Form
 
-This work describes that process through three connected layers:
+What is present and accessible
 
-### **Conditions (3F)**
+Frequency
 
-* **Form** — what is present
-* **Frequency** — how patterns repeat over time
-* **Fidelity** — how consistently conditions are held
+How patterns repeat across time
 
-### **Process (CREA)**
+Fidelity
 
-* **Coherence** — stability and sense-making
-* **Resonance** — connection and engagement
-* **Emergence** — visible capability
-* **Agency** — independent, transferable use
+How coherently conditions are held
 
-### **Threshold (DPZ)**
+Emergence Dynamics · CREA
+Coherence
 
-* **Developmental Permanence Zone**
-* the point at which learning becomes stable and self-sustaining
+Stability and sense-making
 
----
+Resonance
 
-## 🔁 Why It Matters
+Connection and engagement
 
-In many settings, performance appears before it stabilizes.
+Emergence
+
+Visible capability becoming possible
+
+Agency
+
+Independent, transferable participation
+
+Resonance Signatures · 5R
+
+Observable developmental signals that may become easier to notice as coherent conditions strengthen over time.
+
+Regulation
+Resonance
+Reflection
+Relational Belonging
+Recursive Transfer
+
+The 5Rs are not outcomes or scores.
+
+They are resonance signatures:
+recognizable patterns that help make emergence perceptible.
+
+Durability Threshold · DPZ
+Developmental Permanence Zone
+
+The range where coherent conditions may become strong enough for learning, agency, belonging, or participation to persist with less continuous external support.
+
+🌌 Developmental Ecology
+
+Development does not move in straight lines.
+
+Conditions may:
+
+emerge
+stabilize
+fade
+remain latent
+reactivate
+transform over time
+
+Coherence Works explores these temporal dynamics through:
+
+interactive observatories
+threshold simulations
+resonance signatures
+field memory traces
+developmental sensing environments
+
+The intention is not prediction or optimization.
+
+The intention is:
+
+making developmental patterns easier to perceive.
+🔁 Why It Matters
+
+In many environments, performance appears before it stabilizes.
 
 When conditions are inconsistent:
 
-* learning may emerge without persisting
-* behavior may fluctuate
-* outcomes remain variable
+learning may emerge without persisting
+participation may fluctuate
+regulation may remain fragile
+outcomes remain variable
 
 When conditions hold:
 
-* learning stabilizes
-* agency becomes more predictable
-* systems become more coherent over time
-
----
-
-## 🧑‍🏫 Where This Applies
+learning stabilizes
+agency becomes more predictable
+belonging deepens
+systems become more coherent over time
+🧑‍🏫 Where This Applies
 
 This work can be used to explore coherence across:
 
-* classrooms
-* leadership systems
-* multilingual learning environments
-* organizational design
-* human development more broadly
+classrooms
+leadership systems
+multilingual learning environments
+organizational design
+embodied learning systems
+human development more broadly
+🌐 Current Pathways
+◎ Conditions for Agency
 
----
+Human-facing developmental pathways exploring:
 
-## 🌐 Project Components
+participation
+belonging
+regulation
+reflection
+embodied coherence
+songs and rhythmic return structures
+⟳ Temporal Dynamics
 
-This repository connects to a broader set of live interfaces:
+Animated explorations of:
 
-### 🌿 Field Interface
+emergence
+stabilization
+dormancy
+reactivation
+transformation
+cyclical condition potency
+∴ DPZ Observatory
 
-An entry space for recognizing coherence as a lived pattern
+Interactive threshold simulations exploring:
 
-### 📊 Conditions-Based Dashboard
+Form
+Frequency
+Fidelity
+multiplicative coherence
+developmental durability
+resonance signatures
+field memory traces
+🎵 SongBridge
 
-A prototype for making conditions visible as leading indicators
+An embodied layer supporting:
 
-### 🎵 SongBridge
+rhythm
+repetition
+return
+resonance
+multilingual participation
+emotional regulation
+✨ Framing
 
-An embodied layer supporting rhythm, repetition, and resonance
+This work is not intended as:
 
----
+scoring infrastructure
+compliance analytics
+deterministic prediction
+optimization software
 
-## ✨ Framing
+Instead, it explores:
 
-This is not a model to apply.
+developmental noticing
+temporal perception
+reflective systems sensing
+coherence ecology
+collective developmental intelligence
 
-It is a way of seeing how development already works.
+The intention is to preserve:
 
----
+human complexity
+developmental humility
+relational texture
+interpretive openness
 
-## 🌱 Closing
+while making patterns easier to perceive.
 
-The work is small enough to do,
-and large enough to matter.
+🌱 Closing
+
+The work is small enough to do, and large enough to matter.
 
 It lives in the conditions shaped,
+moment by moment,
+across time.ons shaped,
 moment by moment, over time.
