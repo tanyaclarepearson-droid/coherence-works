@@ -767,14 +767,14 @@ body.panel-closed .left {
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:26px;
+  margin-top:18px;
 }
 .start-enter {
   background:rgba(168,207,69,.22);
   border-color:rgba(168,207,69,.42);
 }
 .start-mini {
-  margin-top:20px;
+  margin-top:10px;
   color:var(--muted);
   font-size:13px;
   line-height:1.45;
@@ -57640,7 +57640,12 @@ body.panel-closed .left {
       This interactive portal explores six developmental conditions that support reflection, coherence, agency, flourishing, and human strengths in an AI era.
     </div>
 
-    
+    <div class="start-actions" aria-label="Choose how to enter the portal">
+      <button class="start-enter primary" id="enterPortal" type="button">Explore the six conditions ↓</button>
+      <button id="showRoles" type="button">Choose a role to begin</button>
+    </div>
+    <div class="start-mini">Below: six numbered conditions, a guided walkthrough, role-based pathways, classroom examples, and developmental signals.</div>
+
     <div class="audio-reflection sb-reflection-card" id="beforeSongCard">
       <div class="audio-kicker">Optional Reflection Layer</div>
       <h4>Before You Ask Them to Learn</h4>
@@ -57769,15 +57774,6 @@ body.panel-closed .left {
       </div>
     </dialog>
 
-
-    <div class="start-actions">
-      <button class="start-enter primary" id="enterPortal" type="button">Enter Portal</button>
-      <button id="showRoles" type="button">Begin With Your Role</button>
-    </div>
-
-    <div class="start-mini">
-      Explore the framework through walkthrough stages, role-based entry points, classroom pathways, developmental signals, and embodied coherence practices.
-    </div>
   </div>
 </div>
 
