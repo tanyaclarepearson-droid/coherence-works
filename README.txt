@@ -1,5 +1,7 @@
 Coherence Works · Developmental Sensemaking Hub
 
+The two model pages (Conditions over time and DPZ threshold) now sit in a narrower navy frame with teal and purple glow, matching the Coherence Works hub while preserving their light visualization canvases.
+
 This revision makes the relationship among the core lenses easier to see:
 3F conditions → temporal dynamics → CREA emergence → 5R resonance signatures → DPZ durability.
 
