@@ -57569,6 +57569,58 @@ body.panel-closed .left {
 
 </style>
 <style>.model-nav{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;margin:0 0 14px;border:1px solid #dfe7e8;border-radius:16px;background:rgba(255,255,255,.9);font:800 13px/1.3 system-ui,sans-serif}.model-nav a{color:#102a55;text-decoration:none;padding:5px 8px;border-radius:999px}.model-nav a:hover{background:#edf6f0;text-decoration:underline}</style>
+<style id="songbridge-before-player-styles">
+.sb-reflection-card{border:1px solid rgba(168,207,69,.24);background:radial-gradient(circle at 92% 4%,rgba(105,215,221,.10),transparent 34%),linear-gradient(135deg,rgba(19,43,66,.92),rgba(29,55,67,.90));padding:22px;border-radius:22px}
+.sb-reflection-card h4{font:700 29px/1.1 Georgia,serif;color:#f5f7f4;margin:8px 0 8px}
+.sb-reflection-card>p{color:#c3cfdd;font-size:15px;line-height:1.5;margin:0 0 17px}
+.sb-card-player{display:grid;grid-template-columns:132px minmax(0,1fr);gap:18px;align-items:center;padding:14px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.035)}
+.sb-card-cover{width:132px;aspect-ratio:1;object-fit:cover;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.24)}
+.sb-card-content{display:flex;flex-direction:column;gap:6px;min-width:0;color:#f6fbff}
+.sb-card-meta,.sb-dialog-kicker{font-size:10px;font-weight:950;letter-spacing:.13em;text-transform:uppercase;color:#c5e65d}
+.sb-card-content>strong{font-size:18px;color:white}
+.sb-card-content>span{font-size:12px;color:#c3cfdd}
+.sb-audio-dock audio,.sb-dialog-audio-dock audio{width:100%;height:42px;margin-top:6px}
+.sb-open-lyrics{align-self:flex-start;border:1px solid rgba(197,230,93,.48);border-radius:999px;background:rgba(168,207,69,.14);color:#f5ffd3;padding:9px 14px;font-weight:850;cursor:pointer}
+.sb-open-lyrics:hover{background:rgba(168,207,69,.24)}
+.sb-open-lyrics span{padding-left:8px}
+.sb-card-note{font-size:11px;color:#aebed0}
+.sb-lyrics-dialog{width:min(1160px,96vw);height:min(850px,93vh);max-width:none;max-height:93vh;border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:0;background:#122b37;color:#edf4f3;box-shadow:0 30px 100px rgba(0,0,0,.58);overflow:hidden}
+.sb-lyrics-dialog::backdrop{background:rgba(2,8,16,.78);backdrop-filter:blur(8px)}
+.sb-dialog-shell{height:100%;display:flex;flex-direction:column;background:radial-gradient(circle at 96% 0%,rgba(105,215,221,.12),transparent 34%),linear-gradient(145deg,#132d3b,#1d3542)}
+.sb-dialog-header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:20px 24px 14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.sb-dialog-header h3{font:700 clamp(24px,3vw,36px)/1.06 Georgia,serif;margin:5px 0;color:#fff}
+.sb-dialog-header p{margin:0;color:#b8c7d9;font-size:13px}
+.sb-dialog-close{flex:0 0 auto;width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:rgba(255,255,255,.07);color:#fff;font-size:25px;line-height:1;cursor:pointer}
+.sb-player-layout{display:grid;grid-template-columns:236px minmax(0,1fr);gap:20px;padding:18px 20px 20px;min-height:0;flex:1}
+.sb-cover-column{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.sb-cover-column img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:17px;box-shadow:0 14px 38px rgba(0,0,0,.32)}
+.sb-cover-column p{font:italic 17px/1.4 Georgia,serif;color:#eef5ef;margin:14px 0 8px}
+.sb-cover-column span{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#c5e65d}
+.sb-lyrics-side{display:flex;flex-direction:column;min-width:0;min-height:0}
+.sb-dialog-audio-dock{flex:0 0 auto;padding:0 0 8px}
+.sb-lyrics-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 0 10px}
+.sb-tool-button,.sb-text-size button{border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.055);color:#ecf4f5;padding:8px 11px;font-size:12px;font-weight:850;cursor:pointer}
+.sb-tool-button:hover,.sb-text-size button:hover{background:rgba(255,255,255,.12)}
+.sb-tool-button.is-active{background:#b7d945;border-color:#b7d945;color:#102a37}
+.sb-text-size{display:flex;align-items:center;gap:6px;margin-left:auto;color:#b8c7d9;font-size:11px;font-weight:800}
+.sb-text-size button{padding:6px 9px}
+.sb-text-size output{min-width:38px;text-align:center;color:#f4f8fa;font-variant-numeric:tabular-nums}
+.sb-timing-panel{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 12px;margin:0 0 9px;border:1px solid rgba(197,230,93,.3);border-radius:13px;background:rgba(168,207,69,.08)}
+.sb-timing-panel[hidden]{display:none!important}
+.sb-timing-panel strong{font-size:12px;color:#e8f5bf}
+.sb-timing-panel p{margin:3px 0 0;color:#c3cfdd;font-size:11px;line-height:1.4}
+.sb-timing-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:#dbe6ec;font-size:11px}
+.sb-timing-actions button{border:1px solid rgba(255,255,255,.2);border-radius:999px;background:transparent;color:#e8f1f4;padding:6px 9px;font-size:11px;cursor:pointer}
+.sb-lyrics-scroll{min-height:0;flex:1;overflow:auto;border:1px solid rgba(255,255,255,.13);border-radius:17px;background:rgba(8,22,31,.30);padding:16px 20px;scroll-behavior:smooth}
+.sb-lyric-section{padding:0 0 16px;margin:0 0 12px;border-bottom:1px solid rgba(255,255,255,.09)}
+.sb-lyric-section:last-child{border-bottom:0;margin-bottom:0}
+.sb-lyric-section-title{margin:0 0 5px;color:#c5e65d;font-size:10px;letter-spacing:.13em;text-transform:uppercase}
+.sb-lyric-lines{display:flex;flex-direction:column;align-items:stretch;gap:1px}
+.sb-lyric-line{display:block;width:100%;border:0;border-radius:8px;background:transparent;text-align:left;color:#d8e2e9;font:500 var(--sb-lyric-size,20px)/1.45 Inter,system-ui,sans-serif;padding:3px 9px;cursor:pointer;transition:background .15s,color .15s}
+.sb-lyric-line:hover{background:rgba(255,255,255,.07);color:#fff}
+.sb-lyric-line.is-active{background:rgba(168,207,69,.18);color:#f7ffd9;box-shadow:inset 3px 0 #c5e65d}
+@media(max-width:760px){.sb-card-player{grid-template-columns:84px minmax(0,1fr);gap:12px;padding:11px}.sb-card-cover{width:84px}.sb-reflection-card{padding:16px}.sb-reflection-card h4{font-size:24px}.sb-lyrics-dialog{width:100vw;height:100dvh;max-height:100dvh;border-radius:0}.sb-dialog-header{padding:15px 16px 12px}.sb-player-layout{grid-template-columns:1fr;gap:10px;padding:12px;overflow:auto}.sb-cover-column{display:none}.sb-lyrics-side{min-height:0;flex:1}.sb-lyrics-scroll{min-height:250px;padding:12px}.sb-lyrics-toolbar{gap:6px}.sb-text-size{margin-left:0}}
+</style>
 </head>
 <body>
 <nav class="model-nav" aria-label="Coherence Works model navigation"><a href="/">System map</a><a href="/temporal">Conditions over time</a><a href="/agency#fiveR">5R signatures</a><a href="/dpz">DPZ threshold</a></nav>
@@ -57589,50 +57641,133 @@ body.panel-closed .left {
     </div>
 
     
-    <div class="audio-reflection">
+    <div class="audio-reflection sb-reflection-card" id="beforeSongCard">
       <div class="audio-kicker">Optional Reflection Layer</div>
       <h4>Before You Ask Them to Learn</h4>
-      <p>A reflective audio entry point for the portal before moving into pathways, signals, and implementation layers.</p>
+      <p>Notice the stories that arrive before the lesson begins.</p>
 
-      <div class="audio-player-shell">
-        <div class="audio-title">
-          <div class="audio-title-icon">♪</div>
-          <div>
-            <strong>Before You Ask Them to Learn</strong><br>
-            <span>Reflection on conditions, belonging, and readiness</span>
+      <div class="sb-card-player">
+        <img class="sb-card-cover" src="/assets/before-you-ask-them-to-learn-illustrated.jpg" alt="Before You Ask Them to Learn cover art: an educator listening to a student in a classroom">
+        <div class="sb-card-content">
+          <div class="sb-card-meta">SONGBRIDGE · SONG + LYRICS</div>
+          <strong>Before You Ask Them to Learn</strong>
+          <span>Song and lyrics by Tanya Pearson · English</span>
+          <div class="sb-audio-dock" id="beforeAudioHome">
+            <audio class="portal-audio" id="beforeSongAudio" controls preload="metadata">
+              <source src="/audio/before-you-ask-them-to-learn.mp3" type="audio/mpeg">
+              Your browser does not support audio playback.
+            </audio>
           </div>
-        </div>
-
-        <audio class="portal-audio" controls preload="none">
-          <source src="/audio/before-you-ask-them-to-learn.mp3" type="audio/mpeg">
-          Your browser does not support audio playback.
-        </audio>
-
-        <button class="lyrics-toggle" type="button" data-lyrics="beforeLyrics">Show Lyrics</button>
-
-        <div class="lyrics-panel" id="beforeLyrics">
-          <pre>
-Before you ask them to learn,
-ask if they feel safe enough to try.
-Before you ask them to speak,
-ask if they believe their voice can matter.
-
-Learning grows in conditions:
-through rhythm,
-through trust,
-through reflection,
-through return.
-
-Before you ask them to learn,
-help them feel they belong.
-          </pre>
-        </div>
-
-        <div class="audio-note">
-          MP3 path for GitHub/Netlify: <code>/audio/before-you-ask-them-to-learn.mp3</code>
+          <button class="sb-open-lyrics" id="openBeforeLyrics" type="button">Open full lyrics &amp; follow audio <span aria-hidden="true">↗</span></button>
+          <div class="sb-card-note">Complete lyrics · adjustable display · audio-follow timing</div>
         </div>
       </div>
     </div>
+
+    <dialog class="sb-lyrics-dialog" id="beforeLyricsDialog" aria-labelledby="beforeLyricsTitle">
+      <div class="sb-dialog-shell" id="beforeLyricsSurface">
+        <header class="sb-dialog-header">
+          <div>
+            <div class="sb-dialog-kicker">SongBridge · Reflection song</div>
+            <h3 id="beforeLyricsTitle">Before You Ask Them to Learn</h3>
+            <p>Song and lyrics by Tanya Pearson <span>· English</span> <span id="beforeSongDuration"></span></p>
+          </div>
+          <button class="sb-dialog-close" id="closeBeforeLyrics" type="button" aria-label="Close lyrics">×</button>
+        </header>
+        <div class="sb-player-layout">
+          <aside class="sb-cover-column">
+            <img src="/assets/before-you-ask-them-to-learn-illustrated.jpg" alt="Before You Ask Them to Learn cover art: an educator listening to a student in a classroom">
+            <p>“Every child walks in holding more than they’re ready to show.”</p>
+            <span>Listen · Read · Reflect</span>
+          </aside>
+          <div class="sb-lyrics-side">
+            <div class="sb-dialog-audio-dock" id="beforeAudioDialogDock"></div>
+            <div class="sb-lyrics-toolbar" aria-label="Lyrics display controls">
+              <button class="sb-tool-button is-active" id="beforeFollowToggle" type="button" aria-pressed="true">Follow audio</button>
+              <div class="sb-text-size" aria-label="Lyrics text size">
+                <span>Text size</span>
+                <button id="beforeTextSmaller" type="button" aria-label="Decrease lyric text size">A−</button>
+                <output id="beforeTextSizeValue">20 px</output>
+                <button id="beforeTextLarger" type="button" aria-label="Increase lyric text size">A+</button>
+              </div>
+              <button class="sb-tool-button" id="beforeTimingToggle" type="button" aria-pressed="false">Recording &amp; timing</button>
+              <button class="sb-tool-button" id="beforeFullscreenToggle" type="button">Full screen</button>
+            </div>
+            <div class="sb-timing-panel" id="beforeTimingPanel" hidden>
+              <div><strong>Set lyric timing</strong><p>Play the recording, then tap each line as it begins. Your timing markers stay in this browser.</p></div>
+              <div class="sb-timing-actions"><span id="beforeTimingStatus" role="status">No timing markers saved yet.</span><button id="beforeClearTiming" type="button">Clear timings</button></div>
+            </div>
+            <div class="sb-lyrics-scroll" id="beforeLyricsScroll" aria-label="Complete song lyrics">
+              <section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Verse 1</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="0">Before you ask them to listen,</button>
+<button class="sb-lyric-line" type="button" data-line-index="1">Notice how they arrived—</button>
+<button class="sb-lyric-line" type="button" data-line-index="2">With echoes in their footsteps</button>
+<button class="sb-lyric-line" type="button" data-line-index="3">From other days, other lives.</button>
+<button class="sb-lyric-line" type="button" data-line-index="4">Some carry unfinished stories,</button>
+<button class="sb-lyric-line" type="button" data-line-index="5">Some carry light from before,</button>
+<button class="sb-lyric-line" type="button" data-line-index="6">Every child walks in holding</button>
+<button class="sb-lyric-line" type="button" data-line-index="7">More than they’re ready to show.</button></div></section>
+<section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Pre-Chorus</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="8">Learning doesn’t start in the moment,</button>
+<button class="sb-lyric-line" type="button" data-line-index="9">It starts where memory meets now.</button>
+<button class="sb-lyric-line" type="button" data-line-index="10">It starts when the room feels safe enough</button>
+<button class="sb-lyric-line" type="button" data-line-index="11">To let the body slow down.</button></div></section>
+<section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Chorus</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="12">You don’t teach by pushing harder,</button>
+<button class="sb-lyric-line" type="button" data-line-index="13">You don’t pull them into line.</button>
+<button class="sb-lyric-line" type="button" data-line-index="14">You shape the feeling of the moment</button>
+<button class="sb-lyric-line" type="button" data-line-index="15">So learning can cross time.</button>
+<button class="sb-lyric-line" type="button" data-line-index="16">Before you ask them to reach,</button>
+<button class="sb-lyric-line" type="button" data-line-index="17">Before you ask them to try—</button>
+<button class="sb-lyric-line" type="button" data-line-index="18">You build a space that can hold</button>
+<button class="sb-lyric-line" type="button" data-line-index="19">Who they’ve been</button>
+<button class="sb-lyric-line" type="button" data-line-index="20">And who they might become</button>
+<button class="sb-lyric-line" type="button" data-line-index="21">At the same time.</button></div></section>
+<section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Verse 2</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="22">Some kids learned early to hurry,</button>
+<button class="sb-lyric-line" type="button" data-line-index="23">Some learned early to hide.</button>
+<button class="sb-lyric-line" type="button" data-line-index="24">Some learned the world was watching,</button>
+<button class="sb-lyric-line" type="button" data-line-index="25">Some learned to shrink inside.</button>
+<button class="sb-lyric-line" type="button" data-line-index="26">But when the tone feels welcoming,</button>
+<button class="sb-lyric-line" type="button" data-line-index="27">When the air feels kind,</button>
+<button class="sb-lyric-line" type="button" data-line-index="28">Something softens in the present</button>
+<button class="sb-lyric-line" type="button" data-line-index="29">And opens a door behind.</button></div></section>
+<section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Pre-Chorus</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="30">Emotion isn’t extra—</button>
+<button class="sb-lyric-line" type="button" data-line-index="31">It’s how the brain decides</button>
+<button class="sb-lyric-line" type="button" data-line-index="32">Whether this moment is worth keeping,</button>
+<button class="sb-lyric-line" type="button" data-line-index="33">Whether it belongs in a life.</button></div></section>
+<section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Chorus</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="34">You don’t teach by pushing harder,</button>
+<button class="sb-lyric-line" type="button" data-line-index="35">You don’t pull them into line.</button>
+<button class="sb-lyric-line" type="button" data-line-index="36">You tend the feeling in the room</button>
+<button class="sb-lyric-line" type="button" data-line-index="37">So growth can take its time.</button>
+<button class="sb-lyric-line" type="button" data-line-index="38">Before you ask them to reach,</button>
+<button class="sb-lyric-line" type="button" data-line-index="39">Before you ask them to try—</button>
+<button class="sb-lyric-line" type="button" data-line-index="40">You make a place that can carry</button>
+<button class="sb-lyric-line" type="button" data-line-index="41">Their yesterdays</button>
+<button class="sb-lyric-line" type="button" data-line-index="42">And their tomorrow’s why.</button></div></section>
+<section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Bridge</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="43">Every learner is a bridge</button>
+<button class="sb-lyric-line" type="button" data-line-index="44">Between what was and what could be.</button>
+<button class="sb-lyric-line" type="button" data-line-index="45">If the ground beneath them trembles,</button>
+<button class="sb-lyric-line" type="button" data-line-index="46">The future waits patiently.</button>
+<button class="sb-lyric-line" type="button" data-line-index="47">Teaching isn’t speeding them forward—</button>
+<button class="sb-lyric-line" type="button" data-line-index="48">It’s steadying the span</button>
+<button class="sb-lyric-line" type="button" data-line-index="49">So when they step,</button>
+<button class="sb-lyric-line" type="button" data-line-index="50">The next version of themselves</button>
+<button class="sb-lyric-line" type="button" data-line-index="51">Can land.</button></div></section>
+<section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Final Chorus</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="52">You don’t teach alone,</button>
+<button class="sb-lyric-line" type="button" data-line-index="53">You teach with the field—</button>
+<button class="sb-lyric-line" type="button" data-line-index="54">With the stories in the room,</button>
+<button class="sb-lyric-line" type="button" data-line-index="55">With how the moment feels.</button>
+<button class="sb-lyric-line" type="button" data-line-index="56">Learning doesn’t rush,</button>
+<button class="sb-lyric-line" type="button" data-line-index="57">It listens, it stays.</button>
+<button class="sb-lyric-line" type="button" data-line-index="58">When the space can hold the past</button>
+<button class="sb-lyric-line" type="button" data-line-index="59">The future finds its invited to stay.</button>
+<button class="sb-lyric-line" type="button" data-line-index="60">You teach by building the place</button>
+<button class="sb-lyric-line" type="button" data-line-index="61">Where learning can finally say:</button>
+<button class="sb-lyric-line" type="button" data-line-index="62">Okay.</button></div></section>
+<section class="sb-lyric-section"><h4 class="sb-lyric-section-title">Outro</h4><div class="sb-lyric-lines"><button class="sb-lyric-line" type="button" data-line-index="63">Teach the feeling.</button>
+<button class="sb-lyric-line" type="button" data-line-index="64">Learning will remember.</button></div></section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
 
 
     <div class="start-actions">
@@ -58624,6 +58759,72 @@ document.querySelectorAll(".lyrics-toggle").forEach(btn => {
   });
 });
 
+</script>
+<script id="songbridge-before-player-script">
+(()=>{
+  const dialog=document.getElementById('beforeLyricsDialog');
+  const audio=document.getElementById('beforeSongAudio');
+  const open=document.getElementById('openBeforeLyrics');
+  const close=document.getElementById('closeBeforeLyrics');
+  const home=document.getElementById('beforeAudioHome');
+  const dialogDock=document.getElementById('beforeAudioDialogDock');
+  const follow=document.getElementById('beforeFollowToggle');
+  const timing=document.getElementById('beforeTimingToggle');
+  const timingPanel=document.getElementById('beforeTimingPanel');
+  const timingStatus=document.getElementById('beforeTimingStatus');
+  const clear=document.getElementById('beforeClearTiming');
+  const status=document.getElementById('beforeSongDuration');
+  const scroll=document.getElementById('beforeLyricsScroll');
+  const lines=[...document.querySelectorAll('#beforeLyricsScroll .sb-lyric-line')];
+  const surface=document.getElementById('beforeLyricsSurface');
+  const fontOutput=document.getElementById('beforeTextSizeValue');
+  const key='coherence-before-you-ask-lyric-timing-v1';
+  let cues={};
+  let followAudio=true;
+  let recordTiming=false;
+  let activeIndex=-1;
+  let lyricSize=20;
+  try{cues=JSON.parse(localStorage.getItem(key)||'{}')||{}}catch(e){cues={}}
+  const savedCount=()=>Object.keys(cues).length;
+  const timeLabel=t=>{if(!Number.isFinite(t))return '';const m=Math.floor(t/60),s=Math.floor(t%60);return `${m}:${String(s).padStart(2,'0')}`};
+  function timingMessage(){
+    const count=savedCount();
+    timingStatus.textContent=count?`${count} of ${lines.length} line starts saved on this device.`:'No timing markers saved yet.';
+    follow.title=count?'Follow the recorded lyric timing.':'Turn on Recording & timing to add line cues.';
+  }
+  function setActive(i,scrollIntoView=false){
+    if(i===activeIndex)return;
+    activeIndex=i;
+    lines.forEach((line,n)=>line.classList.toggle('is-active',n===i));
+    if(i>=0&&scrollIntoView)lines[i].scrollIntoView({block:'center',behavior:'smooth'});
+  }
+  function syncToAudio(){
+    if(!followAudio||!savedCount())return;
+    const t=audio.currentTime;
+    let best=-1,bestTime=-1;
+    for(const [raw,time] of Object.entries(cues)){const idx=Number(raw);if(time<=t&&time>bestTime&&idx>=0&&idx<lines.length){best=idx;bestTime=time}}
+    if(best>=0)setActive(best,true);
+  }
+  open.addEventListener('click',()=>{dialog.showModal();dialogDock.appendChild(audio);timingMessage();});
+  close.addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('close',()=>{audio.pause();home.appendChild(audio);recordTiming=false;timing.classList.remove('is-active');timing.setAttribute('aria-pressed','false');timing.textContent='Recording & timing';timingPanel.hidden=true;});
+  follow.addEventListener('click',()=>{followAudio=!followAudio;follow.classList.toggle('is-active',followAudio);follow.setAttribute('aria-pressed',String(followAudio));if(!followAudio)setActive(-1);else syncToAudio();});
+  timing.addEventListener('click',()=>{recordTiming=!recordTiming;timingPanel.hidden=!recordTiming;timing.classList.toggle('is-active',recordTiming);timing.setAttribute('aria-pressed',String(recordTiming));timing.textContent=recordTiming?'Stop timing':'Recording & timing';timingMessage();});
+  lines.forEach((line,index)=>line.addEventListener('click',()=>{
+    if(recordTiming){cues[index]=audio.currentTime;try{localStorage.setItem(key,JSON.stringify(cues))}catch(e){}setActive(index,false);timingMessage();return}
+    if(Object.prototype.hasOwnProperty.call(cues,index)){audio.currentTime=cues[index];setActive(index,false)}
+    else{setActive(index,false);timingStatus.textContent='No cue for this line yet. Turn on Recording & timing, then tap it as it begins.';timingPanel.hidden=false;}
+  }));
+  clear.addEventListener('click',()=>{cues={};try{localStorage.removeItem(key)}catch(e){}setActive(-1);timingMessage();});
+  audio.addEventListener('timeupdate',syncToAudio);
+  audio.addEventListener('loadedmetadata',()=>{status.textContent=audio.duration?`· ${timeLabel(audio.duration)}`:'';});
+  timingMessage();
+  document.getElementById('beforeTextSmaller').addEventListener('click',()=>{lyricSize=Math.max(16,lyricSize-2);surface.style.setProperty('--sb-lyric-size',`${lyricSize}px`);fontOutput.textContent=`${lyricSize} px`;});
+  document.getElementById('beforeTextLarger').addEventListener('click',()=>{lyricSize=Math.min(34,lyricSize+2);surface.style.setProperty('--sb-lyric-size',`${lyricSize}px`);fontOutput.textContent=`${lyricSize} px`;});
+  const full=document.getElementById('beforeFullscreenToggle');
+  full.addEventListener('click',async()=>{try{if(document.fullscreenElement){await document.exitFullscreen();}else{await surface.requestFullscreen();}}catch(e){timingStatus.textContent='Full screen is unavailable in this browser. The lyrics window remains open.';}});
+  document.addEventListener('fullscreenchange',()=>{full.textContent=document.fullscreenElement?'Exit full screen':'Full screen';});
+})();
 </script>
 </body>
 </html>

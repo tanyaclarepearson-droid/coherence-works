@@ -10,4 +10,6 @@ The homepage now includes a condition life-cycle illustration and a companion fo
 
 To deploy on Netlify, use the files in this folder as the published site root. The _redirects file preserves the clean /agency, /temporal, and /dpz routes.
 
-The Agency page uses root-absolute /audio/ paths so audio loads from both /agency and /agency.html. Add these four MP3 files to this folder's audio/ directory before deploying: before-you-ask-them-to-learn.mp3, learning-what-holds.mp3, learnings-journey.mp3, and we-come-back.mp3. The We Come Back player is now wired into the page.
+The Agency page uses root-absolute /audio/ paths. The audio/ directory now includes all four playable MP3s: before-you-ask-them-to-learn.mp3, learning-what-holds.mp3, learnings-journey.mp3, and we-come-back.mp3. The prior Before You Ask Them to Learn file was a 2-byte text stub; it has been replaced by the playable SongBridge recording. Cover art is in assets/.
+
+The Before You Ask Them to Learn player now opens a SongBridge-style lyrics reader with the complete lyrics, cover art, audio-follow control, adjustable text size, full-screen mode, and a timing recorder. Lyric cues are recorded by tapping lines during playback and saved in the browser; no timing is guessed in advance.
