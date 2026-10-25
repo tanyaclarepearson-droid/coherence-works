@@ -7,4 +7,4 @@ The homepage now includes a condition life-cycle illustration and a companion fo
 
 To deploy on Netlify, use the files in this folder as the published site root. The _redirects file preserves the clean /agency, /temporal, and /dpz routes.
 
-The Agency page references four MP3 files under /audio/ (before-you-ask-them-to-learn.mp3, learning-what-holds.mp3, learnings-journey.mp3, and we-come-back.mp3). Those assets are not included because they are not present in the current live deployment. Add them to this folder's audio/ directory if you want the audio players to work.
+The Agency page uses root-absolute /audio/ paths so audio loads from both /agency and /agency.html. Add these four MP3 files to this folder's audio/ directory before deploying: before-you-ask-them-to-learn.mp3, learning-what-holds.mp3, learnings-journey.mp3, and we-come-back.mp3. The We Come Back player is now wired into the page.
