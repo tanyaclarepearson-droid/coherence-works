@@ -25,15 +25,15 @@ h1{font-family:Georgia,serif;color:var(--navy);font-size:48px;line-height:1.02;m
 .main-coupled{
   display:grid;
   grid-template-columns:360px minmax(0,1fr);
-  gap:18px;
-  margin-top:18px;
+  gap:14px;
+  margin-top:12px;
   align-items:stretch;
 }
 .control-column,.graph-column{
   border:1px solid var(--line);
   border-radius:24px;
   background:#fffdf9;
-  padding:18px;
+  padding:15px;
 }
 .control-column{
   display:flex;
@@ -104,7 +104,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
   flex:1;
   min-width:330px;
 }
-.svg-wrap{position:relative;height:430px;margin-top:8px}
+.svg-wrap{position:relative;height:330px;margin-top:4px}
 svg{width:100%;height:100%;overflow:visible}
 .axis-label{position:absolute;left:0;top:210px;transform:rotate(-90deg);transform-origin:left top;font-weight:900;font-size:13px;color:var(--navy)}
 .axis-soft{stroke:rgba(9,38,92,.62);stroke-width:2;stroke-linecap:round}
@@ -122,7 +122,7 @@ svg{width:100%;height:100%;overflow:visible}
 .time-label{text-align:center;font-weight:900;margin-top:-6px;color:var(--navy)}
 
 .signature-strip{
-  margin-top:12px;
+  margin-top:9px;
   border:1px solid var(--line);
   border-radius:20px;
   background:#fff;
@@ -139,20 +139,20 @@ svg{width:100%;height:100%;overflow:visible}
 .sig-card strong{display:block;color:var(--navy);font-size:13.5px;margin-bottom:5px}
 .sig-card.active{border-color:rgba(8,115,62,.45);box-shadow:0 0 0 2px rgba(8,115,62,.08);background:#f8fcf9}
 
-.story-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.story-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:9px}
 .story{border:1px solid var(--line);border-radius:15px;background:white;padding:13px;line-height:1.4}
 .story strong{display:block;color:var(--navy);margin-bottom:5px}
 .story p{margin:0;color:#405778;font-size:13px}
-.controls{border:1px solid var(--line);border-radius:18px;background:#fff;padding:12px 14px;margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.control-btn{width:46px;height:46px;border-radius:50%;border:0;background:var(--navy);color:white;font-size:20px;cursor:pointer;font-weight:900}
+.controls{border:1px solid var(--line);border-radius:18px;background:#fff;padding:9px 11px;margin-top:7px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.control-btn{width:42px;height:42px;border-radius:50%;border:0;background:var(--navy);color:white;font-size:19px;cursor:pointer;font-weight:900;flex:0 0 auto}
 .control-btn.green{background:var(--green)}
 .status{color:var(--green);font-weight:850;font-size:13px}
-.progress{flex:1;min-width:180px;height:8px;border-radius:999px;background:#dbe7e9;position:relative;overflow:hidden}
+.progress{flex:1;min-width:130px;height:8px;border-radius:999px;background:#dbe7e9;position:relative;overflow:hidden}
 .progress span{position:absolute;inset:0 auto 0 0;width:0%;background:linear-gradient(90deg,var(--green),var(--teal),var(--purple),var(--green));animation:progress 8s ease-in-out forwards}
 @keyframes progress{to{width:100%}}
-.audio-note{margin-left:auto;color:var(--muted);font-size:13px;font-weight:750}
+.audio-note{margin-left:0;color:var(--muted);font-size:12px;font-weight:750}
 
-.summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:16px}
+.summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
 .summary-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px}
 .summary-card h3{margin:0 0 8px;font-family:Georgia,serif;color:var(--navy);font-size:23px}
 .summary-card p{margin:0;color:#405778;line-height:1.45}
@@ -162,7 +162,7 @@ svg{width:100%;height:100%;overflow:visible}
 @media(max-width:1100px){
   .main-coupled,.summary{grid-template-columns:1fr}
   h1{font-size:38px}
-  .svg-wrap{height:390px}
+  .svg-wrap{height:310px}
   .signature-text-row,.story-row{grid-template-columns:1fr}
   .footer{flex-direction:column}
 }
@@ -314,6 +314,16 @@ svg{width:100%;height:100%;overflow:visible}
       </div>
       <div class="time-label">Time · repeated coherent contact</div>
 
+      <div class="controls">
+        <button class="control-btn" onclick="restart()">▶</button>
+        <button class="control-btn green" id="toggleBtn" onclick="toggleAnimation()">❚❚</button>
+        <button class="control-btn" id="audioBtn" onclick="toggleAudio()" style="background:var(--purple)">♪</button>
+        <button class="control-btn" id="memoryBtn" onclick="toggleMemory()" style="background:var(--teal)">≋</button>
+        <div><b>Watch multiplicative coherence cross the DPZ threshold</b><br><span class="status" id="status">Animation in progress…</span></div>
+        <div class="audio-note">♪ chime · ≋ memory traces</div>
+        <div class="progress"><span id="bar"></span></div>
+      </div>
+
       <div class="signature-strip">
         <div class="signature-header">
           <div class="signature-label">Temporal signatures · graph behavior modes</div>
@@ -338,15 +348,7 @@ svg{width:100%;height:100%;overflow:visible}
         <div class="story"><strong>Inside DPZ</strong><p>The pattern is more durable. Agency can persist with less continuous external input.</p></div>
       </div>
 
-      <div class="controls">
-        <button class="control-btn" onclick="restart()">▶</button>
-        <button class="control-btn green" id="toggleBtn" onclick="toggleAnimation()">❚❚</button>
-        <button class="control-btn" id="audioBtn" onclick="toggleAudio()" style="background:var(--purple)">♪</button>
-        <button class="control-btn" id="memoryBtn" onclick="toggleMemory()" style="background:var(--teal)">≋</button>
-        <div><b>Watch multiplicative coherence cross the DPZ threshold</b><br><span class="status" id="status">Animation in progress…</span></div>
-        <div class="audio-note">♪ chime · ≋ memory traces</div>
-        <div class="progress"><span id="bar"></span></div>
-      </div>
+
     </section>
   </section>
 
