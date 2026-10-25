@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=705fbcf9-451f-429d-b04a-a07e4af1a8f9
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coherence Works · Developmental Sensemaking Hub</title>
 <style>
@@ -69,17 +72,38 @@ h1{font-family:Georgia,serif;font-size:58px;line-height:1.02;margin:12px 0 14px;
 .section-head h2{font-family:Georgia,serif;font-size:34px;margin:0 0 8px}
 .section-head p{margin:0;color:var(--muted);line-height:1.55;max-width:850px}
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:22px}
-.step{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04);padding:16px}
-.step strong{display:block;color:white;margin-bottom:8px}
+.flow{grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch}
+.step{position:relative;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04);padding:16px;min-height:174px}
+.step .step-index{display:block;color:var(--cyan);font-size:11px;font-weight:950;letter-spacing:.12em;margin-bottom:13px}
+.step strong{display:block;color:white;margin-bottom:8px;font-size:16px;line-height:1.25}
 .step span{color:var(--muted);font-size:13px;line-height:1.42}
+.step:nth-child(2) .step-index{color:var(--purple)}
+.step:nth-child(3) .step-index{color:#dfff91}
+.step:nth-child(4) .step-index{color:#ffd58a}
+.step:nth-child(5) .step-index{color:#bde6c9}
+.cycle-wrap{padding:20px 22px 22px;border-top:1px solid var(--line);background:rgba(0,0,0,.08)}
+.cycle-title{font-weight:900;color:white;margin:0 0 12px;font-size:14px}
+.cycle{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.cycle li{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035);padding:11px 10px;color:var(--muted);font-size:12px;line-height:1.35}
+.cycle li strong{display:block;color:var(--text);font-size:12px;margin-bottom:4px}
+.cycle li:nth-child(4),.cycle li:nth-child(5){border-color:rgba(180,140,255,.34);background:rgba(180,140,255,.07)}
+.cycle-return{margin:12px 0 0;color:#dfff91;font-size:13px;font-weight:800}
+.five-r-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.five-r-list span{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 10px;color:#edf7fa;font-size:12px}
+.five-r-list b{color:#dfff91}
+.model-nav{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;margin:0 0 14px;border:1px solid #dfe7e8;border-radius:16px;background:rgba(255,255,255,.86);font:800 13px/1.3 system-ui,sans-serif}
+.model-nav a{color:#102a55;text-decoration:none;padding:5px 8px;border-radius:999px}
+.model-nav a:hover{background:#edf6f0;text-decoration:underline}
 .footer{margin-top:18px;color:var(--muted);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px}
 @media(max-width:1000px){
  header{align-items:flex-start;flex-direction:column}
  h1{font-size:42px}
  .hero-inner{padding:30px}
- .map,.flow{grid-template-columns:1fr}
+ .map{grid-template-columns:1fr}
+ .flow,.cycle{grid-template-columns:repeat(2,minmax(0,1fr))}
  .card{min-height:auto}
 }
+@media(max-width:620px){.flow,.cycle{grid-template-columns:1fr}.step{min-height:0}}
 </style>
 </head>
 <body>
@@ -93,9 +117,9 @@ h1{font-family:Georgia,serif;font-size:58px;line-height:1.02;margin:12px 0 14px;
    </div>
   </div>
   <nav>
-   <a href="agency.html">Agency</a>
-   <a href="temporal.html">Temporal</a>
-   <a href="dpz.html">Developmental Permanence Zone</a>
+   <a href='/agency'>Agency</a>
+   <a href='/temporal'>Temporal</a>
+   <a href='/dpz'>Developmental Permanence Zone</a>
    <a href="#architecture">Architecture</a>
   </nav>
  </header>
@@ -105,15 +129,15 @@ h1{font-family:Georgia,serif;font-size:58px;line-height:1.02;margin:12px 0 14px;
    <div class="kicker">Start here</div>
    <h1>A calm entry into coherent conditions, agency, time, and durability.</h1>
    <p class="lead">
-     Each page offers a different lens: the human-facing agency pathway, the temporal life cycle of conditions, the multiplicative DPZ threshold, and the resonance signatures that make emergence easier to notice.
+     A shared map connects the conditions adults can shape, the ways those conditions change over time, the signs of emergence, and the patterns that may become more durable.
    </p>
    <div class="anchor">
-    Conditions shape the field. Timing changes their potency. Resonance makes emergence perceptible. Durability begins when coherent patterns become easier to hold.
+    Form, Frequency, and Fidelity shape conditions. Time changes how they land. The 5Rs help us notice what may be emerging. The DPZ describes a range where patterns may become more durable.
    </div>
   </div>
 
   <div class="map">
-   <a class="card" href="agency.html">
+   <a class='card' href='/agency'>
     <div>
      <div class="icon">◎</div>
      <h2>Conditions for Agency</h2>
@@ -122,7 +146,7 @@ h1{font-family:Georgia,serif;font-size:58px;line-height:1.02;margin:12px 0 14px;
     <div class="open">Open Agency →</div>
    </a>
 
-   <a class="card" href="temporal.html">
+   <a class='card' href='/temporal'>
     <div>
      <div class="icon">⟳</div>
      <h2>Temporal Dynamics</h2>
@@ -131,7 +155,7 @@ h1{font-family:Georgia,serif;font-size:58px;line-height:1.02;margin:12px 0 14px;
     <div class="open">Open Temporal →</div>
    </a>
 
-   <a class="card" href="dpz.html">
+   <a class='card' href='/dpz'>
     <div>
      <div class="icon">∴</div>
      <h2>Developmental Permanence Zone</h2>
@@ -140,11 +164,11 @@ h1{font-family:Georgia,serif;font-size:58px;line-height:1.02;margin:12px 0 14px;
     <div class="open">Open DPZ →</div>
    </a>
 
-   <a class="card" href="agency.html#fiveR">
+   <a class='card' href='/agency#fiveR'>
     <div>
      <div class="icon">5R</div>
      <h2>Resonance Signatures</h2>
-     <p>Regulation, resonance, reflection, relational belonging, and recursive transfer as observable emergence signals.</p>
+     <p>Regulation, Resonance, Reflection, Relational Belonging, and Recursive Transfer: observable signatures, not scores or guaranteed outcomes.</p>
     </div>
     <div class="open">Open 5R →</div>
    </a>
@@ -154,14 +178,29 @@ h1{font-family:Georgia,serif;font-size:58px;line-height:1.02;margin:12px 0 14px;
  <section class="section" id="architecture">
   <div class="section-head">
    <div class="kicker">Architecture</div>
-   <h2>How the pieces fit together</h2>
-   <p>This system is not organized as a set of isolated resources. It is a layered ecology for perceiving how development becomes more likely, more visible, and more durable under coherent conditions.</p>
+   <h2>One connected model</h2>
+   <p>Each lens answers a different question. Together they help describe what adults can shape, how conditions shift, what may become visible, and when learning may be easier to carry forward.</p>
   </div>
   <div class="flow">
-   <div class="step"><strong>3F · Conditions</strong><span>Form, Frequency, and Fidelity shape the developmental field.</span></div>
-   <div class="step"><strong>CREA · Emergence</strong><span>Coherent conditions support resonance, emergence, and agency.</span></div>
-   <div class="step"><strong>5R · Signatures</strong><span>Observable resonance signals make emerging agency easier to notice.</span></div>
-   <div class="step"><strong>Developmental Permanence Zone · Durability</strong><span>A threshold range where coherent patterns may become more stable, transferable, and self-sustaining.</span></div>
+   <div class="step"><span class="step-index">01 · SHAPE</span><strong>3F · Conditions</strong><span>Form, Frequency, and Fidelity describe the fit, recurrence, and coherence adults can tend.</span></div>
+   <div class="step"><span class="step-index">02 · SHIFT</span><strong>Temporal dynamics</strong><span>Conditions emerge, stabilize, fade, remain latent, and return as readiness and context change.</span></div>
+   <div class="step"><span class="step-index">03 · EMERGE</span><strong>CREA</strong><span>Conditions may support Resonance, Emergence, and Agency. This names a generative pathway, not a guaranteed sequence.</span></div>
+   <div class="step"><span class="step-index">04 · NOTICE</span><strong>5R · Signatures</strong><span>Developmental signals help make change perceptible while it is still taking shape.</span></div>
+   <div class="step"><span class="step-index">05 · DEEPEN</span><strong>DPZ · Durability</strong><span>A threshold range where coherent patterns may become more stable, transferable, and self-sustaining.</span></div>
+  </div>
+  <div class="cycle-wrap">
+   <p class="cycle-title">Conditions have life cycles. The path can circle back with new meaning.</p>
+   <ol class="cycle" aria-label="A condition's life cycle over time">
+    <li><strong>Emergence</strong>A new condition enters the field.</li>
+    <li><strong>Peak impact</strong>Novelty and participation may rise.</li>
+    <li><strong>Stabilization</strong>The practice becomes more familiar.</li>
+    <li><strong>Fade / background</strong>Its immediate effect may be less visible.</li>
+    <li><strong>Dormant potential</strong>The condition remains available in memory and culture.</li>
+    <li><strong>Reactivation</strong>It returns as readiness or context shifts.</li>
+    <li><strong>Integration</strong>It can shape future practice and new conditions.</li>
+   </ol>
+   <p class="cycle-return">Re-entry is part of the model: renewed conditions can open another cycle of resonance, emergence, and agency.</p>
+   <div class="five-r-list" aria-label="Five resonance signatures"><span><b>Regulation</b> · return</span><span><b>Resonance</b> · shared rhythm</span><span><b>Reflection</b> · pattern noticing</span><span><b>Relational Belonging</b> · connection</span><span><b>Recursive Transfer</b> · student-held reuse</span></div>
   </div>
  </section>
 
