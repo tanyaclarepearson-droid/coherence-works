@@ -21,12 +21,12 @@ h1{font-family:Georgia,serif;color:var(--navy);font-size:62px;line-height:.96;ma
 .badge-wrap{text-align:center}.badge{display:inline-block;background:var(--navy);color:white;font-weight:900;letter-spacing:.03em;border-radius:999px;padding:10px 22px;margin:0 auto 12px}
 .stages{display:grid;grid-template-columns:repeat(7,1fr)}.stage{text-align:center;padding:8px 7px;border-right:1px dashed #ccd7da;min-height:100px}.stage:last-child{border-right:0}.stage strong{display:block;color:var(--green);font-size:13px;text-transform:uppercase;min-height:32px}.stage:nth-child(4) strong,.stage:nth-child(5) strong{color:var(--purple)}.stage p{font-size:11px;line-height:1.35;margin:7px 0 0}.sicon{font-size:27px;margin:4px 0;color:var(--navy)}
 .svg-wrap{position:relative;height:360px}svg{width:100%;height:100%;overflow:visible}.axis-label{position:absolute;left:0;top:132px;transform:rotate(-90deg);transform-origin:left top;font-weight:800;font-size:13px}.time-label{text-align:center;font-weight:850;margin-top:-4px}
-.path-base{fill:none;stroke:#d2dbe0;stroke-width:6;stroke-linecap:round}.life-path{fill:none;stroke:url(#grad);stroke-width:7;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 9s ease-in-out forwards,breathe 5.5s ease-in-out 9s infinite;filter:url(#glow)}
-.pulse-dot{opacity:0;animation:dotPulse 1.3s ease-out forwards}.dot1{animation-delay:1.2s}.dot2{animation-delay:2.2s}.dot3{animation-delay:3.3s}.dot4{animation-delay:5.3s}.dot5{animation-delay:7.1s}.dot6{animation-delay:8.6s}
-.field-glow{opacity:0;animation:fieldGlow 11s ease-in-out infinite}.sleep-glow{opacity:0;animation:sleepGlow 9s ease-in-out 4.6s infinite}.scan{opacity:0;animation:scan 9s ease-in-out forwards}
+.path-base{fill:none;stroke:#d2dbe0;stroke-width:6;stroke-linecap:round}.life-path{fill:none;stroke:url(#grad);stroke-width:7;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 20s ease-in-out forwards,breathe 5.5s ease-in-out 20s infinite;filter:url(#glow)}
+.pulse-dot{opacity:0;animation:dotPulse 1.3s ease-out forwards}.dot1{animation-delay:2.5s}.dot2{animation-delay:5s}.dot3{animation-delay:7.5s}.dot4{animation-delay:12s}.dot5{animation-delay:16s}.dot6{animation-delay:19s}
+.field-glow{opacity:0;animation:fieldGlow 22s ease-in-out infinite}.sleep-glow{opacity:0;animation:sleepGlow 20s ease-in-out 9s infinite}.scan{opacity:0;animation:scan 20s ease-in-out forwards}
 @keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{stroke-width:7}50%{stroke-width:9}}@keyframes dotPulse{0%{opacity:0;transform:scale(.4)}40%{opacity:1;transform:scale(1.25)}100%{opacity:1;transform:scale(1)}}@keyframes fieldGlow{0%,15%{opacity:0}25%,38%{opacity:.55}55%,63%{opacity:.25}72%,100%{opacity:.44}}@keyframes sleepGlow{0%,35%,100%{opacity:.05}50%{opacity:.25}}@keyframes scan{0%{opacity:0;transform:translateX(0)}8%{opacity:.35}100%{opacity:.05;transform:translateX(820px)}}
 .note-row{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:8px}.note{border:1px solid var(--line);border-radius:14px;background:#fff;padding:12px;font-size:12px;line-height:1.35}
-.controls{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px 18px;margin-top:16px;display:flex;align-items:center;gap:16px}.play{width:48px;height:48px;border-radius:50%;border:0;background:var(--navy);color:white;font-size:22px;cursor:pointer}.progress{flex:1;height:8px;border-radius:999px;background:#dbe7e9;position:relative;overflow:hidden}.progress span{position:absolute;inset:0 auto 0 0;width:0%;background:linear-gradient(90deg,var(--green),var(--teal),var(--purple),var(--green));animation:progress 9s ease-in-out forwards}@keyframes progress{to{width:100%}}
+.controls{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px 18px;margin-top:16px;display:flex;align-items:center;gap:16px}.play{width:48px;height:48px;border-radius:50%;border:0;background:var(--navy);color:white;font-size:22px;cursor:pointer}.progress{flex:1;height:8px;border-radius:999px;background:#dbe7e9;position:relative;overflow:hidden}.progress span{position:absolute;inset:0 auto 0 0;width:0%;background:linear-gradient(90deg,var(--green),var(--teal),var(--purple),var(--green));animation:progress 20s linear forwards}@keyframes progress{to{width:100%}}
 .lower{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:18px}.examples,.practice{border:1px solid var(--line);border-radius:18px;background:#fffdf9;padding:18px}.examples h3,.practice h3{margin:0 0 14px;font-size:16px;color:var(--navy);text-transform:uppercase}.example-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.ex{text-align:center;border-right:1px dashed #d3dcdf;padding:0 8px}.ex:last-child{border-right:0}.ei{font-size:30px;color:var(--navy)}.ex strong{display:block;font-size:12px;margin:8px 0 6px}.ex p{font-size:11px;line-height:1.35;margin:0}.practice li{margin:12px 0;font-size:13px}
 .bottom{margin-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}.bottom div{padding:16px 20px;border-right:1px solid #dfe7e8;font-weight:800}.bottom div:last-child{border-right:0}
 .footer{margin-top:12px;background:var(--navy);color:white;border-radius:14px;padding:15px 22px;display:flex;justify-content:space-between;gap:18px;letter-spacing:.08em;text-transform:uppercase;font-size:13px}.footer .green{color:#75d69c;text-transform:none;letter-spacing:0;font-size:15px}
@@ -35,6 +35,7 @@ h1{font-family:Georgia,serif;color:var(--navy);font-size:62px;line-height:.96;ma
 .paused *{
   animation-play-state:paused !important;
 }
+.restarting *{animation:none !important}
 
 </style>
 <style>.model-nav{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;margin:0 0 12px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(5,12,22,.62);font:800 13px/1.3 system-ui,sans-serif}.model-nav a{color:#dbe8f5;text-decoration:none;padding:6px 9px;border-radius:999px}.model-nav a:hover{background:rgba(168,207,69,.12);color:#fff;text-decoration:none}.site-frame .shell{border-radius:24px}@media(max-width:1360px){.site-frame{margin:16px}}@media(max-width:720px){.site-frame{margin:8px;padding:8px;border-radius:22px}.model-nav{border-radius:14px}.site-frame .shell{padding:16px;border-radius:18px}}</style>
@@ -49,23 +50,42 @@ h1{font-family:Georgia,serif;color:var(--navy);font-size:62px;line-height:.96;ma
 <div class="stages"><div class="stage"><strong>Emergence</strong><div class="sicon">🌱</div><p>New condition introduced. High novelty and impact.</p></div><div class="stage"><strong>Peak Impact</strong><div class="sicon">☆</div><p>Energy, engagement, and coherence increase.</p></div><div class="stage"><strong>Stabilization</strong><div class="sicon">🛡</div><p>Condition becomes part of the culture. Impact steadies.</p></div><div class="stage"><strong>Fade / Background</strong><div class="sicon">☁</div><p>Familiarity grows. Immediate impact appears to decline.</p></div><div class="stage"><strong>Dormant Potential</strong><div class="sicon">◌</div><p>The condition remains in the field — ready for reactivation.</p></div><div class="stage"><strong>Reactivation</strong><div class="sicon">⟳</div><p>Revisited with new readiness. Impact returns.</p></div><div class="stage"><strong>Integration & Transformation</strong><div class="sicon">♧</div><p>Deeply integrated. Shapes identity, relationships, and future conditions.</p></div></div>
 <div class="svg-wrap"><div class="axis-label">Perceived Impact</div><svg viewBox="0 0 1000 360" preserveAspectRatio="none"><defs><linearGradient id="grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0%" stop-color="#08733e"/><stop offset="34%" stop-color="#075fd1"/><stop offset="55%" stop-color="#5d2db7"/><stop offset="78%" stop-color="#08733e"/><stop offset="100%" stop-color="#08733e"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect class="field-glow" x="90" y="105" width="250" height="170" rx="90" fill="#08733e"/><rect class="sleep-glow" x="520" y="150" width="250" height="120" rx="80" fill="#5d2db7"/><line x1="40" y1="325" x2="970" y2="325" stroke="#09265c" stroke-width="2"/><line x1="40" y1="325" x2="40" y2="70" stroke="#09265c" stroke-width="2"/><text x="8" y="80" font-size="13" fill="#09265c" font-weight="700">HIGH</text><text x="14" y="322" font-size="13" fill="#09265c" font-weight="700">LOW</text><rect class="scan" x="40" y="52" width="70" height="278" fill="rgba(255,255,255,.45)"/><path class="path-base" d="M50,250 C95,230 120,168 170,118 C220,70 270,95 320,120 C370,143 470,110 510,155 C555,205 555,232 610,232 C680,232 725,232 765,178 C805,125 850,118 910,100 C935,92 950,88 965,86"/><path class="life-path" d="M50,250 C95,230 120,168 170,118 C220,70 270,95 320,120 C370,143 470,110 510,155 C555,205 555,232 610,232 C680,232 725,232 765,178 C805,125 850,118 910,100 C935,92 950,88 965,86"/><circle class="pulse-dot dot1" cx="88" cy="218" r="10" fill="#08733e"/><circle class="pulse-dot dot2" cx="190" cy="105" r="10" fill="#08733e"/><circle class="pulse-dot dot3" cx="320" cy="120" r="10" fill="#075fd1"/><circle class="pulse-dot dot4" cx="565" cy="226" r="10" fill="#fff" stroke="#5d2db7" stroke-width="4"/><circle class="pulse-dot dot5" cx="765" cy="178" r="10" fill="#08733e"/><circle class="pulse-dot dot6" cx="950" cy="88" r="10" fill="#08733e"/></svg></div><div class="time-label">Time</div>
 <div class="note-row"><div class="note">💚 Students are curious. Energy is high. Participation widens.</div><div class="note">🛡 It becomes routine. Safety and structure strengthen.</div><div class="note">☁ It feels less noticeable. Other needs take priority.</div><div class="note">◌ The seed remains. Not lost — just waiting.</div><div class="note">✳ Something shifts. The condition lands differently now.</div><div class="note">♧ It becomes part of identity and culture.</div></div><div class="controls">
-<button class="play" onclick="restart()">▶</button>
-<button class="play" id="toggleBtn" onclick="toggleAnimation()" style="background:var(--green)">❚❚</button>
+<button class="play" id="restartBtn" onclick="restart()" aria-label="Replay the cycle" title="Replay the cycle">↻</button>
+<button class="play" id="toggleBtn" onclick="toggleAnimation()" aria-label="Pause the cycle" title="Pause the cycle" style="background:var(--green)">❚❚</button>
 <div><b>Watch the cycle</b><br><span id="status" style="color:var(--green);font-size:13px">Animation in progress…</span></div><div class="progress"><span id="bar"></span></div></div></section></div>
 <div class="lower"><section class="examples"><h3>Examples of conditions that often follow cyclical patterns</h3><div class="example-grid"><div class="ex"><div class="ei">♫</div><strong>Songs & Chants</strong><p>Reignite community, regulation, and joy when revisited.</p></div><div class="ex"><div class="ei">☰</div><strong>Sentence Frames</strong><p>Gain new power as language confidence grows.</p></div><div class="ex"><div class="ei">◉</div><strong>Breathing Routines</strong><p>Regulate in times of stress, especially after disruption.</p></div><div class="ex"><div class="ei">👥</div><strong>Morning Rituals</strong><p>Re-anchor the day and restore group coherence.</p></div><div class="ex"><div class="ei">▤</div><strong>Reflective Prompts</strong><p>Land more deeply as identity and insight develop.</p></div><div class="ex"><div class="ei">✧</div><strong>Celebrations & Shared Joy</strong><p>Build belonging over time and return as touchstones.</p></div></div></section><section class="practice"><h3>What this means for practice</h3><ul><li><b>Notice the arc, not just the moment.</b><br>Look for patterns over time.</li><li><b>Trust re-entry.</b><br>Conditions can regain power in new ways.</li><li><b>Tune with humility.</b><br>Context, readiness, and relationship shape every impact.</li></ul></section></div>
 <div class="bottom"><div>🌱 Presence. Patience. Re-entry.<br><span style="font-weight:500">This is how coherence deepens.</span></div><div>👥 Conditions can be tuned<br><span style="font-weight:500">to help emergence become more possible.</span></div><div>◎ From moments to movements.<br><span style="font-weight:500">From movements to lasting change.</span></div></div><div class="footer"><span>Coherence is a living practice.</span><span>Strong conditions.</span><span>Shared purpose.</span><span>Lasting impact.</span><span class="green">Coherence grows through shared conditions.</span></div></div></div>
 <script>
 
 let paused = false;
+const statusEl = document.getElementById('status');
+const toggleEl = document.getElementById('toggleBtn');
+const barEl = document.getElementById('bar');
+
 function toggleAnimation(){
   paused = !paused;
   document.body.classList.toggle('paused', paused);
-  document.getElementById('toggleBtn').innerHTML = paused ? '▶' : '❚❚';
-  document.getElementById('status').textContent = paused ? 'Animation paused for reflection.' : 'Animation resumed…';
+  toggleEl.innerHTML = paused ? '▶' : '❚❚';
+  toggleEl.setAttribute('aria-label', paused ? 'Resume the cycle' : 'Pause the cycle');
+  toggleEl.title = paused ? 'Resume the cycle' : 'Pause the cycle';
+  statusEl.textContent = paused ? 'Animation paused for reflection.' : 'Animation resumed…';
 }
 
-function restart(){document.querySelectorAll('.life-path,.pulse-dot,.field-glow,.sleep-glow,.scan,#bar').forEach(el=>{el.style.animation='none';void el.offsetWidth;el.style.animation='';});document.getElementById('status').textContent='Animation restarted…';setTimeout(()=>document.getElementById('status').textContent='Cycle complete — notice what reactivates.',9300)}
-setTimeout(()=>document.getElementById('status').textContent='Cycle complete — notice what reactivates.',9300)
+function restart(){
+  paused = false;
+  document.body.classList.remove('paused');
+  toggleEl.innerHTML = '❚❚';
+  toggleEl.setAttribute('aria-label', 'Pause the cycle');
+  toggleEl.title = 'Pause the cycle';
+  statusEl.textContent = 'Replaying the full cycle…';
+  document.body.classList.add('restarting');
+  void document.body.offsetWidth;
+  requestAnimationFrame(()=>document.body.classList.remove('restarting'));
+}
+
+barEl.addEventListener('animationend', ()=>{
+  statusEl.textContent = 'Cycle complete — notice what reactivates.';
+});
 </script>
 </div><!-- site-frame -->
 </body></html>
